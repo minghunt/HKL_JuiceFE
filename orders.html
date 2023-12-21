@@ -258,9 +258,8 @@
 							<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
 							<a class="nav-link" href="users.html">
 								<span class="nav-icon">
-									<svg width="24px" height="24px" viewBox="0 0 24.00 24.00"  class="bi bi-card-list"
-									fill="none"
-										xmlns="http://www.w3.org/2000/svg">
+									<svg width="24px" height="24px" viewBox="0 0 24.00 24.00" class="bi bi-card-list"
+										fill="none" xmlns="http://www.w3.org/2000/svg">
 										<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
 										<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
 										</g>
@@ -496,7 +495,24 @@
 
 			</div><!--//container-fluid-->
 		</div><!--//app-content-->
-
+		<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<!-- Nội dung modal tại đây -->
+						Your content goes here...
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	</div><!--//app-wrapper-->
 
@@ -505,28 +521,56 @@
 		// Giả sử bạn đã có một mảng dữ liệu đơn hàng
 		const orders = [
 			{ id: "15346", product: "Lorem ipsum", employee: "John Sanders", date: "17 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15321", product: "Lorem ipsum", employee: "John Sanders", date: "17 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15323", product: "Lorem ipsum", employee: "John Sanders", date: "17 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15236", product: "Lorem ipsum", employee: "John Sanders", date: "17 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15423", product: "Lorem ipsum", employee: "John Sanders", date: "17 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15567", product: "Lorem ipsum", employee: "John Sanders", date: "17 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15675", product: "Lorem ipsum", employee: "John Sanders", date: "17 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "25686", product: "Lorem ipsum", employee: "John Sanders", date: "17 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15676", product: "Lorem ipsum", employee: "John Sanders", date: "17 Oct 2:16 PM", status: "Pending", total: "$259.35" },
-			{ id: "15132", product: "Lorem ipsum", employee: "John Sanders", date: "17 Oct 2:16 PM", status: "Cancelled", total: "$259.35" },
+			{ id: "15132", product: "Lorem ipsum", employee: "John Sanders", date: "15 Oct 2:16 PM", status: "Cancelled", total: "$259.35" },
+			{ id: "15321", product: "Lorem ipsum", employee: "John Sanders", date: "18 Oct 2:16 PM", status: "Paid", total: "$259.35" },
+			{ id: "15236", product: "Lorem ipsum", employee: "John Sanders", date: "23 Oct 2:16 PM", status: "Paid", total: "$259.35" },
+			{ id: "15236", product: "Lorem ipsum", employee: "John Sanders", date: "23 Oct 2:16 PM", status: "Paid", total: "$259.35" },
+			{ id: "15323", product: "Lorem ipsum", employee: "John Sanders", date: "20 Oct 2:16 PM", status: "Paid", total: "$259.35" },
+			{ id: "15323", product: "Lorem ipsum", employee: "John Sanders", date: "20 Oct 2:16 PM", status: "Paid", total: "$259.35" },
+			{ id: "15132", product: "Lorem ipsum", employee: "John Sanders", date: "15 Oct 2:16 PM", status: "Cancelled", total: "$259.35" },
+			{ id: "15132", product: "Lorem ipsum", employee: "John Sanders", date: "15 Oct 2:16 PM", status: "Cancelled", total: "$259.35" },
+			{ id: "15323", product: "Lorem ipsum", employee: "John Sanders", date: "20 Oct 2:16 PM", status: "Paid", total: "$259.35" },
+			{ id: "15323", product: "Lorem ipsum", employee: "John Sanders", date: "20 Oct 2:16 PM", status: "Paid", total: "$259.35" },
+			{ id: "15236", product: "Lorem ipsum", employee: "John Sanders", date: "23 Oct 2:16 PM", status: "Paid", total: "$259.35" },
+			{ id: "15423", product: "Lorem ipsum", employee: "John Sanders", date: "4 Oct 2:16 PM", status: "Paid", total: "$259.35" },
+			{ id: "15567", product: "Lorem ipsum", employee: "John Sanders", date: "8 Oct 2:16 PM", status: "Paid", total: "$259.35" },
+			{ id: "15567", product: "Lorem ipsum", employee: "John Sanders", date: "8 Oct 2:16 PM", status: "Paid", total: "$259.35" },
+			{ id: "15567", product: "Lorem ipsum", employee: "John Sanders", date: "8 Oct 2:16 PM", status: "Paid", total: "$259.35" },
+			{ id: "15567", product: "Lorem ipsum", employee: "John Sanders", date: "8 Oct 2:16 PM", status: "Paid", total: "$259.35" },
+			{ id: "15675", product: "Lorem ipsum", employee: "John Sanders", date: "28 Oct 2:16 PM", status: "Paid", total: "$259.35" },
+			{ id: "25686", product: "Lorem ipsum", employee: "John Sanders", date: "11 Oct 2:16 PM", status: "Pending", total: "$259.35" },
+			{ id: "15132", product: "Lorem ipsum", employee: "John Sanders", date: "15 Oct 2:16 PM", status: "Cancelled", total: "$259.35" },
+			{ id: "15132", product: "Lorem ipsum", employee: "John Sanders", date: "15 Oct 2:16 PM", status: "Cancelled", total: "$259.35" },
+			{ id: "15132", product: "Lorem ipsum", employee: "John Sanders", date: "15 Oct 2:16 PM", status: "Cancelled", total: "$259.35" },
+			{ id: "15132", product: "Lorem ipsum", employee: "John Sanders", date: "15 Oct 2:16 PM", status: "Cancelled", total: "$259.35" },
 			// Các đơn hàng khác
 		];
-		const rowsPerPage = 3; // Số hàng mỗi trang
+		function parseDate(dateStr) {
+			// Giả sử dateStr có định dạng "17 Oct 2:16 PM"
+			// Chuyển đổi thành định dạng có thể hiểu được bởi Date constructor
+			// Bạn cần thêm năm vào chuỗi ngày, ở đây mình giả sử năm là 2021
+			const year = "2021";
+			const dateTimeStr = dateStr + " " + year;
+			return new Date(dateTimeStr);
+		}
+
+		orders.sort((a, b) => {
+			const dateA = parseDate(a.date);
+			const dateB = parseDate(b.date);
+			return dateB - dateA; // Sắp xếp giảm dần
+		});
+
+		const rowsPerPage = 5; // Số hàng mỗi trang
 		let currentPage = 1; // Trang hiện tại
 		let filterOrder = orders;
-		let searchValue='';;
-		let statusValue='All';
-		document.getElementById('searchForm').addEventListener('submit', function (event) {	
+		let searchValue = '';;
+		let statusValue = 'All';
+		document.getElementById('searchForm').addEventListener('submit', function (event) {
 			event.preventDefault(); // Ngăn không cho trình duyệt gửi biểu mẫu
 			const inputValue = document.getElementById('search-orders').value.trim().toUpperCase();
-			searchValue=inputValue;
-			setupPagination(orders,document.getElementById('pagination'))
-			currentPage=1;
+			searchValue = inputValue;
+			setupPagination(orders, document.getElementById('pagination'))
+			currentPage = 1;
 			document.getElementById('orders-all-tab').click()
 		});
 
@@ -547,10 +591,10 @@
 					<td class="cell">${order.id}</td>
 					<td class="cell"><span class="truncate">${order.product}</span></td>
 					<td class="cell">${order.employee}</td>
-					<td class="cell"><span>17 Oct</span><span class="note">${order.date}</span></td>
+					<td class="cell"><span>${order.date}</span><span class="note">${order.date}</span></td>
 					<td class="cell"><span class="badge ${statusClass}">${order.status}</span></td>
 					<td class="cell">${order.total}</td>
-					<td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
+					<td class="cell"><a class="btn-sm app-btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal" >View</a></td>
 				</tr>`
 
 				tableBody.innerHTML += row;
@@ -566,8 +610,8 @@
 
 		// Hàm lọc đơn hàng theo trạng thái
 		function filterOrdersByStatus(status) {
-			statusValue=status;
-			currentPage=1
+			statusValue = status;
+			currentPage = 1
 			setupPagination(orders, document.getElementById('pagination'));
 		}
 		// Thêm sự kiện click cho từng tab
@@ -586,7 +630,7 @@
 				previousButton.classList.remove('disabled');
 			}
 
-			if (currentPage === pageCount||pageCount===0) {
+			if (currentPage === pageCount || pageCount === 0) {
 				nextButton.classList.add('disabled');
 			} else {
 				nextButton.classList.remove('disabled');
@@ -594,19 +638,19 @@
 
 		}
 
-		function setupPagination(ordersData, paginationElement,current=currentPage) {
+		function setupPagination(ordersData, paginationElement, current = currentPage) {
 			// Xóa các nút trang số hiện tại
-			if (searchValue!=='')
+			if (searchValue !== '')
 				ordersData = ordersData.filter(order => order.id.toUpperCase().includes(searchValue));
-			if (statusValue!=='All')
-				ordersData = ordersData.filter(order => order.status===statusValue);
-			
+			if (statusValue !== 'All')
+				ordersData = ordersData.filter(order => order.status === statusValue);
+
 			while (paginationElement.children.length > 2) {
 				paginationElement.removeChild(paginationElement.children[1]);
 			}
-			filterOrder=ordersData;
+			filterOrder = ordersData;
 			let pageCount = Math.ceil(ordersData.length / rowsPerPage);
-			console.log('ordersData',ordersData)
+			console.log('ordersData', ordersData)
 
 			displayOrders(ordersData, current);
 
@@ -621,7 +665,7 @@
 				pageItem.addEventListener('click', (event) => {
 					event.preventDefault(); // Ngăn không cho trình duyệt chuyển hướng
 					currentPage = i;
-					setupPagination(ordersData, document.getElementById('pagination'),i);
+					setupPagination(ordersData, document.getElementById('pagination'), i);
 
 				});
 				paginationElement.insertBefore(pageItem, paginationElement.querySelector('#nextPage'));
@@ -633,14 +677,14 @@
 		document.getElementById('previousPage').addEventListener('click', () => {
 			if (currentPage > 1) {
 				currentPage--;
-				setupPagination(filterOrder,  document.getElementById('pagination'));
+				setupPagination(filterOrder, document.getElementById('pagination'));
 			}
 		});
 
 		document.getElementById('nextPage').addEventListener('click', () => {
 			if (currentPage * rowsPerPage < filterOrder.length) {
 				currentPage++;
-				setupPagination(filterOrder,  document.getElementById('pagination'));
+				setupPagination(filterOrder, document.getElementById('pagination'));
 			}
 		});
 
