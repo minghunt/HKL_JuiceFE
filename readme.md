@@ -6,7 +6,7 @@ Employee tạo mới bởi Admin
 
 
 /orders Page:
-    + admin xem, sửa, xóa
+    + admin xem, sửa trạng thái thanh toán, xóa
     + Employee đưa máy cho khách tạo hóa đơn
 
 /product Page:
