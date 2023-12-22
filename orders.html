@@ -90,7 +90,8 @@
 									<li>
 										<hr class="dropdown-divider">
 									</li>
-									<li><a class="dropdown-item" href="login.html" onclick="localStorage.removeItem('loginUser')">Đăng xuất</a></li>
+									<li><a class="dropdown-item" href="login.html"
+											onclick="localStorage.removeItem('loginUser')">Đăng xuất</a></li>
 								</ul>
 							</div><!--//app-user-dropdown-->
 						</div><!--//app-utilities-->
@@ -166,7 +167,7 @@
 							</a><!--//nav-link-->
 						</li><!--//nav-item-->
 						<li class="nav-item" id="user_nav">
-							
+
 						</li>
 						<! <li class="nav-item has-submenu">
 							<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
@@ -201,9 +202,6 @@
 								</ul>
 							</div>
 							</li><!--//nav-item-->
-
-
-
 
 
 					</ul><!--//app-menu-->
@@ -244,6 +242,7 @@
 					<div class="col-auto">
 						<h1 class="app-page-title mb-0">Hóa đơn</h1>
 					</div>
+					<!-- Top main -->
 					<div class="col-auto">
 						<div class="page-utilities">
 							<div class="row g-2 justify-content-start justify-content-md-end align-items-center">
@@ -283,10 +282,10 @@
 								</div>
 							</div><!--//row-->
 						</div><!--//table-utilities-->
-					</div><!--//col-auto-->
-				</div><!--//row-->
+					</div>
+				</div>
 
-
+				<!-- filter -->
 				<nav id="orders-table-tab"
 					class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
 					<a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab"
@@ -302,12 +301,13 @@
 						hủy</a>
 				</nav>
 
-
+				<!-- Table -->
 				<div class="tab-content">
 					<div role="tabpanel" aria-labelledby="orders-all-tab">
 						<div class="app-card app-card-orders-table shadow-sm mb-5">
 							<div class="app-card-body">
 								<div class="table-responsive">
+									<!-- id="ordersTable" -->
 									<table style="text-align: center;" id="ordersTable"
 										class="table app-table-hover mb-0 text-left">
 										<thead>
@@ -326,7 +326,6 @@
 										</tbody>
 									</table>
 								</div><!--//table-responsive-->
-
 							</div><!--//app-card-body-->
 						</div><!--//app-card-->
 						<nav class="app-pagination">
@@ -348,9 +347,11 @@
 				</div><!--//tab-content-->
 
 
-
 			</div><!--//container-fluid-->
-		</div><!--//app-content-->
+		</div>
+
+
+		<!--//Modal View-->
 		<div class="modal fade" id="orderDetailModal" tabindex="-1" aria-labelledby="orderDetailModalLabel"
 			aria-hidden="true">
 			<div class="modal-dialog">
@@ -359,14 +360,16 @@
 						<h5 class="modal-title" id="orderDetailModalLabel">Chi tiết hóa đơn</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
-					<div class="modal-body" >
+					<div class="modal-body">
 						<div class="card order-card">
-							<div id="orderDetailCardHead" style="display: flex; justify-content: space-between;align-items: center;" class="card-header">
+							<div id="orderDetailCardHead"
+								style="display: flex; justify-content: space-between;align-items: center;"
+								class="card-header">
 							</div>
-							<div class="card-body"  >
+							<div class="card-body">
 								<div id="orderDetailCardBody">
 								</div>
-						
+
 								<table style="text-align:center" class="table" id="orderTbody">
 									<thead>
 										<tr>
@@ -376,12 +379,12 @@
 											<th>Thành Tiền</th>
 										</tr>
 									</thead>
-									<tbody  id="orderTableBody">
+									<tbody id="orderTableBody">
 										<!-- Lặp qua từng sản phẩm để tạo ra các hàng -->
-										
+
 									</tbody>
 									<tfoot id="orderTableFoot">
-										
+
 									</tfoot>
 								</table>
 							</div>
@@ -394,35 +397,93 @@
 			</div>
 		</div>
 
+		<!--//Modal Edit-->
+		<div class="modal fade" id="editOrderModal" tabindex="-1" aria-labelledby="editOrderModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Sửa hóa đơn</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="card order-card">
+							<div id="EditOrderCardHead"
+								style="display: flex; justify-content: space-between;align-items: center;"
+								class="card-header">
+
+							</div>
+							<div class="card-body">
+								<div id="EditOrderCardBody">
+
+								</div>
+
+								<table style="text-align:center" class="table" id="orderTbody">
+									<thead>
+										<tr>
+											<th>Ảnh</th>
+											<th>Tên Sản Phẩm</th>
+											<th>Số Lượng</th>
+											<th>Thành Tiền</th>
+										</tr>
+									</thead>
+									<tbody id="EditOrderTableBody">
+										<!-- Lặp qua từng sản phẩm để tạo ra các hàng -->
+
+									</tbody>
+									<tfoot id="EditOrderTableFoot">
+
+									</tfoot>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer" id="EditOrderModelFooter">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+
+		<!--//Modal Delete-->
+		<div class="modal fade" id="deleteOrderModal" tabindex="-1" aria-labelledby="deleteOrderModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Xóa hóa đơn</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="card order-card">
+							<div id="DeleteOrderCardHead"
+								style="display: flex; justify-content: space-between;align-items: center;"
+								class="card-header">
+								<h4>Bạn có chắc chắc muốn xóa hóa đơn này không?</h4>
+							</div>
+							<div class="card-body">
+								<div id="DeleteOrderCardBody">
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer" id="DeleteOrderModelFooter">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
 	</div><!--//app-wrapper-->
 
-	<script>
-		if(!localStorage.getItem('loginUser'))
-			window.location.href='/login.html'
-		else if(JSON.parse(localStorage.getItem('loginUser')).roleName==='Admin')
-		{console.log('true')
-			document.getElementById('user_nav').innerHTML=`
-			<a class="nav-link " href="users.html" >
-				<span class="nav-icon">
-					<svg width="24px" height="24px" viewBox="0 0 24.00 24.00"  class="bi bi-card-list" fill="none"
-						xmlns="http://www.w3.org/2000/svg">
-						<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-						<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-						<g id="SVGRepo_iconCarrier">
-							<path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
-								stroke="currentColor" stroke-width="1.392" stroke-linecap="round"
-								stroke-linejoin="round"></path>
-							<path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z"
-								stroke="currentColor" stroke-width="1.392" stroke-linecap="round"
-								stroke-linejoin="round"></path>
-						</g>
-					/svg>
-				</span>
-				<span class="nav-link-text">Người dùng</span>
-			</a><!--//nav-link-->`
-		}
-		
 
+
+	<!-- Dữ liệu giả -->
+	<script>
 		function OrderDetail(productName, price, quantity, imgUrl) {
 			this.productName = productName;
 			this.price = price;
@@ -447,30 +508,22 @@
 			this.orderTotal = orderTotal; // Đây sẽ là một mảng các OrderDetail
 		}
 
-
-
 		// Tạo mảng đơn hàng giả
 		var orders = [
 			new Order(1, 'yasuo', '2023-12-01', 'Đã thanh toán', 1, 'Thẻ tín dụng', orderDetail, 123451556),
-			new Order(2, 'yesure', '2023-12-02', 'Đã hủy', 2, 'Chuyển khoản', orderDetail, 125500),
-			new Order(3, 'hehe', '2023-12-02', 'Đang chờ', 2, 'Chuyển khoản', orderDetail, 2342000)
+			new Order(2, 'yesure', '2023-12-08', 'Đã hủy', 2, 'Chuyển khoản', orderDetail, 125500),
+			new Order(3, 'hehe', '2023-12-03', 'Đã thanh toán', '', '', orderDetail, 2342000),
+			new Order(5, 'kiki', '2022-12-15', 'Đang chờ', '', '', orderDetail, 2342000),
+			new Order(8, 'hoho', '2021-12-05', 'Đang chờ', '', '', orderDetail, 2342000),
+			new Order(15, 'lala', '2023-01-08', 'Đang chờ', '', '', orderDetail, 2342000),
+			new Order(32, 'abv', '2023-12-22', 'Đang chờ', '', '', orderDetail, 2342000),
+			new Order(11, 'keke', '2021-12-11', 'Đã thanh toán', '', '', orderDetail, 2342000),
+			new Order(7, 'haungu', '2023-06-03', 'Đang chờ', '', '', orderDetail, 2342000)
 		];
+	</script>
 
-		function parseDate(dateStr) {
-			// Giả sử dateStr có định dạng "17 Oct 2:16 PM"
-			// Chuyển đổi thành định dạng có thể hiểu được bởi Date constructor
-			// Bạn cần thêm năm vào chuỗi ngày, ở đây mình giả sử năm là 2021
-			const year = "2021";
-			const dateTimeStr = dateStr + " " + year;
-			return new Date(dateTimeStr);
-		}
-
-		orders.sort((a, b) => {
-			const dateA = parseDate(a.date);
-			const dateB = parseDate(b.date);
-			return dateB - dateA; // Sắp xếp giảm dần
-		});
-
+	<!-- Hiển thị dữ liệu và phân trang lọc -->
+	<script>
 		const rowsPerPage = 5; // Số hàng mỗi trang
 		let currentPage = 1; // Trang hiện tại
 		let filterOrder = orders;
@@ -484,40 +537,11 @@
 			currentPage = 1;
 			document.getElementById('orders-all-tab').click()
 		});
-		function getDetail(orderS) {
-			console.log(orderS)
-			document.getElementById('orderDetailCardHead').innerHTML = `
-				<h5 style="margin: 0;" class="card-title">Mã Hóa Đơn: #${orderS.orderId}</h5>
-				<h6 style="margin: 0;" class="card-title">Ngày: ${orderS.orderDate}</h6>
-			`
-			document.getElementById('orderDetailCardBody').innerHTML = `
-				<p style="text-align: right;" class="card-text">Trạng Thái: ${orderS.paymentStatus}</p>
-				<p style="text-align: right;" class="card-text">Phương Thức: ${orderS.paymentMethod}</p>
-				<p style="text-align: right;" class="card-text">Nhân Viên: ${orderS.employee}</p>
-			`
-			const tableBody = document.getElementById('orderTableBody');
-			tableBody.innerHTML=''
-			orderS.orderDetails.forEach(order => {
-				let row =`
-					<tr valign='middle' >
-						<td><img style="width:70px;border-radius:20%;box-shadow:2px 2px 3px gray" src="${order.imgUrl} alt="Product Image" class="product-img"></td>
-						<td class="product-name">${order.productName}</td>
-						<td>2</td>
-						<td>1,000,000 VND</td>
-					</tr>`
-			tableBody.innerHTML += row;
-			});
-
-			document.getElementById('orderTableFoot').innerHTML = `
-				<tr>
-					<th colspan="3" style="text-align: right;">Tổng Tiền</th>
-					<th>${orderS.orderTotal}</th>
-				</tr>
-			`
-		}
-		// Hàm để thêm dữ liệu đơn hàng vào bảng
+		document.querySelector('.form-select').addEventListener('change', () => {
+    		setupPagination(orders, document.getElementById('pagination'))
+		});
+		
 		function displayOrders(ordersData, page = 1) {
-
 			const tableBody = document.getElementById('ordersTable').getElementsByTagName('tbody')[0];
 			tableBody.innerHTML = ""; // Xóa dữ liệu hiện tại
 			const start = (page - 1) * rowsPerPage;
@@ -527,23 +551,21 @@
 			paginatedItems.forEach(order => {
 				let statusClass = order.paymentStatus === 'Đã thanh toán' ? 'bg-success' : (order.paymentStatus === 'Đang chờ' ? 'bg-warning' : 'bg-danger')
 				let orderString = JSON.stringify(order).replace(/"/g, '&quot;');
-
-				let row =`
+				let row = `
 				<tr>
 					<td class="cell">#${order.orderId}</td>
 					<td class="cell" ><a class="btn-sm app-btn-secondary" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#orderDetailModal"  onclick="getDetail(${orderString})">Xem chi tiết</a></td>
-
 					<td class="cell">${order.employee}</td>
 					<td class="cell"><span>${order.orderDate}</span><span class="note">${order.orderDate}</span></td>
 					<td class="cell"><span class="badge ${statusClass}">${order.paymentStatus}</span></td>
 					<td class="cell">${order.orderTotal.toLocaleString('vi-VN', {
-						style: 'currency',
-						currency: 'VND'
-					})}
+					style: 'currency',
+					currency: 'VND'
+				})}
 					</td>
 					<td class="cell">
-						<svg style="cursor:pointer;margin-right:2px" width="24px" height="24px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>edit_cover [#1481]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="#27c4b2" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-419.000000, -359.000000)" fill="#27c4b2"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M384,209.210475 L384,219 L363,219 L363,199.42095 L373.5,199.42095 L373.5,201.378855 L365.1,201.378855 L365.1,217.042095 L381.9,217.042095 L381.9,209.210475 L384,209.210475 Z M370.35,209.51395 L378.7731,201.64513 L380.4048,203.643172 L371.88195,212.147332 L370.35,212.147332 L370.35,209.51395 Z M368.25,214.105237 L372.7818,214.105237 L383.18415,203.64513 L378.8298,199 L368.25,208.687714 L368.25,214.105237 Z" id="edit_cover-[#1481]"> </path> </g> </g> </g> </g></svg>
-						<svg style="cursor:pointer" width="24px" height="24px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#fe4d4d"> <g id="Page-1" stroke="#fe4d4d" stroke-width="1" fill="none" fill-rule="evenodd">
+						<svg style="cursor:pointer;margin-right:2px" data-bs-toggle="modal" data-bs-target="#editOrderModal" onclick="getEditDetail(${orderString})"  width="24px" height="24px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>edit_cover [#1481]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="#27c4b2" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-419.000000, -359.000000)" fill="#27c4b2"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M384,209.210475 L384,219 L363,219 L363,199.42095 L373.5,199.42095 L373.5,201.378855 L365.1,201.378855 L365.1,217.042095 L381.9,217.042095 L381.9,209.210475 L384,209.210475 Z M370.35,209.51395 L378.7731,201.64513 L380.4048,203.643172 L371.88195,212.147332 L370.35,212.147332 L370.35,209.51395 Z M368.25,214.105237 L372.7818,214.105237 L383.18415,203.64513 L378.8298,199 L368.25,208.687714 L368.25,214.105237 Z" id="edit_cover-[#1481]"> </path> </g> </g> </g> </g></svg>
+						<svg style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#deleteOrderModal" width="24px" height="24px" viewBox="0 0 25 25" version="1.1" onclick="openDelete(${orderString})" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#fe4d4d"> <g id="Page-1" stroke="#fe4d4d" stroke-width="1" fill="none" fill-rule="evenodd">
         					<g id="Dribbble-Light-Preview" transform="translate(-179.000000, -360.000000)" fill="#fe4d4d"">
             					<g id="icons" transform="translate(56.000000, 160.000000)" >
                 					<path d="M130.35,216 L132.45,216 L132.45,208 L130.35,208 L130.35,216 Z M134.55,216 L136.65,216 L136.65,208 L134.55,208 L134.55,216 Z M128.25,218 L138.75,218 L138.75,206 L128.25,206 L128.25,218 Z M130.35,204 L136.65,204 L136.65,202 L130.35,202 L130.35,204 Z M138.75,204 L138.75,200 L128.25,200 L128.25,204 L123,204 L123,206 L126.15,206 L126.15,220 L140.85,220 L140.85,206 L144,206 L144,204 L138.75,204 Z" id="delete-[#1487]">
@@ -561,7 +583,6 @@
 
 			// Cập nhật trạng thái của nút 'Previous' và 'Next'
 			updatePaginationButtons(document.getElementById('pagination'), Math.ceil(ordersData.length / rowsPerPage));
-
 		}
 
 		// Hàm lọc đơn hàng theo trạng thái
@@ -595,9 +616,42 @@
 		}
 
 		function setupPagination(ordersData, paginationElement, current = currentPage) {
-			// Xóa các nút trang số hiện tại
+
+			const selectedOption = document.querySelector('.form-select').value;
+			const currentDate = new Date();
+			// Time Filter
+			switch (selectedOption) {
+				case 'option-2': // This Week
+				ordersData = ordersData.filter(order => {
+						const orderDate = new Date(order.orderDate);
+						const startOfWeek = currentDate.getDate() - currentDate.getDay();
+						const endOfWeek = startOfWeek + 6;
+						return orderDate >= new Date(currentDate.setDate(startOfWeek)) &&
+							orderDate <= new Date(currentDate.setDate(endOfWeek));
+					});
+					break;
+				case 'option-3': // This Month
+				ordersData = ordersData.filter(order => {
+						const orderDate = new Date(order.orderDate);
+						return orderDate.getMonth() === currentDate.getMonth() &&
+							orderDate.getFullYear() === currentDate.getFullYear();
+					});
+					break;
+				case 'option-4': // This Year
+				ordersData = ordersData.filter(order => new Date(order.orderDate).getFullYear() === currentDate.getFullYear());
+					break;
+				default: // All
+				ordersData = [...ordersData];
+			}
+			
+			// Sort Date
+			ordersData.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
+			
+			// Search Filter
 			if (searchValue !== '')
-				ordersData = ordersData.filter(order => order.id.toUpperCase().includes(searchValue));
+				ordersData = ordersData.filter(order => order.orderId.toLocaleString().includes(searchValue)||order.employee.toUpperCase().includes(searchValue));
+
+			// Payment status Filter
 			if (statusValue !== 'All')
 				ordersData = ordersData.filter(order => order.paymentStatus === statusValue);
 
@@ -630,6 +684,7 @@
 			// Cập nhật trạng thái nút 'Previous'
 			updatePaginationButtons(paginationElement, pageCount);
 		}
+
 		document.getElementById('previousPage').addEventListener('click', () => {
 			if (currentPage > 1) {
 				currentPage--;
@@ -647,8 +702,214 @@
 		window.onload = () => {
 			setupPagination(orders, document.getElementById('pagination'));
 		};
-		// Hiển thị tất cả đơn hàng khi trang tải xong
 	</script>
+
+	<!-- Authen + Modal -->
+	<script>
+		//Authenticate	
+		const user = JSON.parse(localStorage.getItem("loginUser"))
+		if (!localStorage.getItem('loginUser'))
+			window.location.href = '/login.html'
+		else if (JSON.parse(localStorage.getItem('loginUser')).roleName === 'Admin') {
+			document.getElementById('user_nav').innerHTML = `
+				<a class="nav-link " href="users.html" >
+					<span class="nav-icon">
+						<svg width="24px" height="24px" viewBox="0 0 24.00 24.00"  class="bi bi-card-list" fill="none"
+							xmlns="http://www.w3.org/2000/svg">
+							<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+							<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+							<g id="SVGRepo_iconCarrier">
+								<path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
+									stroke="currentColor" stroke-width="1.392" stroke-linecap="round"
+									stroke-linejoin="round"></path>
+								<path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z"
+									stroke="currentColor" stroke-width="1.392" stroke-linecap="round"
+									stroke-linejoin="round"></path>
+							</g>
+						/svg>
+					</span>
+					<span class="nav-link-text">Người dùng</span>
+				</a><!--//nav-link-->	`
+		}
+
+		//Hiển thị Modal Xem chi tiết		
+		function getDetail(orderS) {
+			console.log(orderS)
+			document.getElementById('orderDetailCardHead').innerHTML = `
+				<h5 style="margin: 0;" class="card-title">Mã Hóa Đơn: #${orderS.orderId}</h5>
+				<h6 style="margin: 0;" class="card-title">Ngày: ${orderS.orderDate}</h6>
+			`
+			document.getElementById('orderDetailCardBody').innerHTML = `
+				<p style="text-align: right;" class="card-text">Trạng Thái: ${orderS.paymentStatus}</p>
+				<p style="text-align: right;" class="card-text">Phương Thức: ${orderS.paymentMethod}</p>
+				<p style="text-align: right;" class="card-text">Nhân Viên: ${orderS.employee}</p>
+			`
+			const tableBody = document.getElementById('orderTableBody');
+			tableBody.innerHTML = ''
+			orderS.orderDetails.forEach(order => {
+				let row = `
+					<tr valign='middle' >
+						<td><img style="width:70px;border-radius:20%;box-shadow:2px 2px 3px gray" src="${order.imgUrl} alt="Product Image" class="product-img"></td>
+						<td class="product-name">${order.productName}</td>
+						<td>2</td>
+						<td>1,000,000 VND</td>
+					</tr>`
+				tableBody.innerHTML += row;
+			});
+
+			document.getElementById('orderTableFoot').innerHTML = `
+				<tr>
+					<th colspan="3" style="text-align: right;">Tổng Tiền</th>
+					<th>${orderS.orderTotal}</th>
+				</tr>
+			`
+		}
+
+		//Hiển thị Modal Edit Hóa đơn	
+		function getEditDetail(orderS) {
+			document.getElementById('EditOrderCardHead').innerHTML = `
+				<h5 style="margin: 0;" class="card-title">Mã Hóa Đơn: #${orderS.orderId}</h5>
+				<h6 style="margin: 0;" class="card-title">Ngày: ${orderS.orderDate}</h6>
+			`
+			if (orderS.userId !== user.userId && orderS.userId !== "") {
+				document.getElementById('EditOrderCardBody').innerHTML = `
+				<p style="text-align: right;" class="card-text">Trạng Thái: ${orderS.paymentStatus}</p>
+				<p style="text-align: right;" class="card-text">Phương Thức: ${orderS.paymentMethod}</p>
+				<p style="text-align: right;" class="card-text">Nhân Viên: ${orderS.userId}</p>
+			`
+				document.getElementById("EditOrderModelFooter").innerHTML = `
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+				`
+			} else {
+				let orderString = JSON.stringify(orderS).replace(/"/g, '&quot;');
+
+				document.getElementById("EditOrderModelFooter").innerHTML = `
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+					<button type="button" class="btn btn-primary" onclick="handleEditOrder(${orderString})">Sửa hóa đơn</button>
+				`
+				document.getElementById('EditOrderCardBody').innerHTML = `<div style="display: flex;align-items: center;justify-content: flex-end;">
+									<p style="text-align: right;margin: 0 6px;" class="card-text">Trạng Thái: </p>
+									<select name="paymentStatus" id="selPaymentStatus">
+										<option  value="Đang chờ">Đang chờ</option>
+										<option value="Đã thanh toán">Đã thanh toán</option>
+										<option value="Đã hủy">Đã hủy</option>
+									</select>
+								</div>
+								<div style="margin: 18px 0px 10px;display: flex;align-items: center;justify-content: flex-end;">
+									<p style="text-align: right;margin: 0px 6px;" class="card-text">Phương Thức: </p>
+									<select name="paymentMethod" id="selPaymentMethod">
+										<option value="Tiền mặt">Tiền mặt</option>
+										<option value="Momo">Momo</option>
+										<option value="Thẻ tín dụng">Thẻ tín dụng</option>
+									</select>
+								</div>
+							<p style="text-align: right;" class="card-text">Nhân Viên: ${user.userFullname}</p>`
+
+			}
+			document.getElementById('selPaymentStatus').value = orderS.paymentStatus;
+			document.getElementById('selPaymentMethod').value = orderS.paymentMethod;
+			const tableBody = document.getElementById('EditOrderTableBody');
+			tableBody.innerHTML = ''
+			orderS.orderDetails.forEach(order => {
+				let row = `
+					<tr valign='middle' >
+						<td><img style="width:70px;border-radius:20%;box-shadow:2px 2px 3px gray" src="${order.imgUrl} alt="Product Image" class="product-img"></td>
+						<td class="product-name">${order.productName}</td>
+						<td>2</td>
+						<td>1,000,000 VND</td>
+					</tr>`
+				tableBody.innerHTML += row;
+			});
+
+			document.getElementById('EditOrderTableFoot').innerHTML = `
+				<tr>
+					<th colspan="3" style="text-align: right;">Tổng Tiền</th>
+					<th>${orderS.orderTotal}</th>
+				</tr>
+			`
+		}
+
+		// Hàm lưu edit hóa đơn lên server 
+		function handleEditOrder(params) {
+			console.log(params)
+			let editOrder = {
+				paymentStatus: document.getElementById('selPaymentStatus').value,
+				paymentMethod: document.getElementById('selPaymentMethod').value,
+				userId: user.userId
+			}
+			fetch(`/order/${editOrder.orderId}`, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(editOrder)
+			})
+				.then(response => {
+					if (response.ok) {
+						// Xử lý thành công (ví dụ: đóng modal)
+						alert("Sửa hóa đơn thành công!");
+
+					} else {
+						alert("Sửa hóa đơn không thành công!");
+					}
+					window.location.reload();
+				})
+				.catch(error => console.error("An error occurred:", error));
+		}
+
+
+		//Hiển thị Modal Xóa Hóa đơn	
+		function openDelete(orderS) {
+			document.getElementById('DeleteOrderCardHead').innerHTML = `
+				<h5 style="margin: 0;" class="card-title">Mã Hóa Đơn: #${orderS.orderId}</h5>
+				<h6 style="margin: 0;" class="card-title">Ngày: ${orderS.orderDate}</h6>
+			`
+			if (orderS.userId !== user.userId && orderS.userId !== "") {
+				document.getElementById('DeleteOrderCardBody').innerHTML = `
+				<p style="text-align: right;" class="card-text">Chỉ có Admin có thể xóa hóa đơn của người khác</p>
+			`
+				document.getElementById("DeleteOrderModelFooter").innerHTML = `
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+				`
+			} else {
+				let orderString = JSON.stringify(orderS).replace(/"/g, '&quot;');
+
+				document.getElementById("DeleteOrderModelFooter").innerHTML = `
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+					<button type="button" class="btn btn-danger" onclick="handleDeleteOrder(${orderString})">Xóa hóa đơn</button>
+				`
+				document.getElementById('DeleteOrderCardBody').innerHTML = `<div style="display: flex;align-items: center;justify-content: flex-end;">
+					<p style="text-align: right;" class="card-text">Bạn có chắc chắn muốn xóa hóa đơn này không?</p>`
+
+			}
+
+		}
+
+		// Hàm lưu xóa hóa đơn lên server 
+		function handleDeleteOrder(params) {
+
+			fetch(`/order/${params.orderId}`, {
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json"
+				},
+			})
+				.then(response => {
+					if (response.ok) {
+						// Xử lý thành công (ví dụ: đóng modal)
+						alert("Xóa hóa đơn thành công!");
+					} else {
+						alert("Xóa hóa đơn không thành công!");
+					}
+					window.location.reload()
+
+				})
+				.catch(error => console.error("An error occurred:", error));
+		}
+
+	</script>
+
+
 	<!-- Javascript -->
 	<script src="assets/plugins/popper.min.js"></script>
 	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
