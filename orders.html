@@ -328,14 +328,15 @@
 								</div><!--//table-responsive-->
 							</div><!--//app-card-body-->
 						</div><!--//app-card-->
+						<!-- Phan trang -->
 						<nav class="app-pagination">
 							<ul class="pagination justify-content-center" id="pagination">
 								<li class="page-item" id="previousPage">
-									<a class="page-link">Previous</a>
+									<a style="cursor: pointer;" class="page-link">Previous</a>
 								</li>
 								<!-- Các nút trang sẽ được thêm vào đây bằng JavaScript -->
 								<li class="page-item " id="nextPage">
-									<a class="page-link ">Next</a>
+									<a style="cursor: pointer;" class="page-link ">Next</a>
 								</li>
 							</ul>
 						</nav>
@@ -511,14 +512,28 @@
 		// Tạo mảng đơn hàng giả
 		var orders = [
 			new Order(1, 'yasuo', '2023-12-01', 'Đã thanh toán', 1, 'Thẻ tín dụng', orderDetail, 123451556),
-			new Order(2, 'yesure', '2023-12-08', 'Đã hủy', 2, 'Chuyển khoản', orderDetail, 125500),
-			new Order(3, 'hehe', '2023-12-03', 'Đã thanh toán', '', '', orderDetail, 2342000),
-			new Order(5, 'kiki', '2022-12-15', 'Đang chờ', '', '', orderDetail, 2342000),
+			new Order(2, 'yesure', '2023-12-08', 'Đã hủy', 2, 'Thẻ tín dụng', orderDetail, 125500),
+			new Order(3, 'hehe', '2023-12-03', 'Đã thanh toán', 5, 'Momo', orderDetail, 2342000),
+			new Order(5, 'kiki', '2022-12-15', 'Đang chờ', '', 'Tiền mặt', orderDetail, 2342000),
+			new Order(6, 'lulu', '2023-11-25', 'Đã thanh toán', 4, 'Tiền mặt', orderDetail, 645500),
+			new Order(7, 'zara', '2023-10-10', 'Đang chờ', 2, 'Thẻ tín dụng', orderDetail, 875000),
+			new Order(8, 'max', '2023-09-05', 'Đã hủy', 3, 'Chuyển khoản', orderDetail, 321000),
+			new Order(9, 'tina', '2023-08-21', 'Đã thanh toán', 1, 'Mono', orderDetail, 450000),
+			new Order(10, 'bob', '2023-07-30', 'Đang chờ', 4, 'Thẻ tín dụng', orderDetail, 1025000),
+			new Order(11, 'alice', '2023-06-19', 'Đã hủy', 5, 'Tiền mặt', orderDetail, 560000),
+			new Order(12, 'mike', '2023-05-08', 'Đã thanh toán', 2, 'Chuyển khoản', orderDetail, 789000),
 			new Order(8, 'hoho', '2021-12-05', 'Đang chờ', '', '', orderDetail, 2342000),
 			new Order(15, 'lala', '2023-01-08', 'Đang chờ', '', '', orderDetail, 2342000),
 			new Order(32, 'abv', '2023-12-22', 'Đang chờ', '', '', orderDetail, 2342000),
 			new Order(11, 'keke', '2021-12-11', 'Đã thanh toán', '', '', orderDetail, 2342000),
-			new Order(7, 'haungu', '2023-06-03', 'Đang chờ', '', '', orderDetail, 2342000)
+			new Order(7, 'haungu', '2023-06-03', 'Đang chờ', '', '', orderDetail, 2342000),
+			new Order(13, 'anna', '2023-11-02', 'Đã thanh toán', 6, 'Tiền mặt', orderDetail, 305500),
+			new Order(14, 'victor', '2023-10-28', 'Đã hủy', 2, 'Thẻ tín dụng', orderDetail, 812500),
+			new Order(15, 'laura', '2023-10-15', 'Đang chờ', 4, 'Chuyển khoản', orderDetail, 455000),
+			new Order(16, 'dave', '2023-08-11', 'Đã thanh toán', 3, 'Mono', orderDetail, 595000),
+			new Order(17, 'sophia', '2023-07-20', 'Đã hủy', 1, 'Tiền mặt', orderDetail, 780000),
+			new Order(18, 'oliver', '2023-06-13', 'Đã thanh toán', 5, 'Thẻ tín dụng', orderDetail, 1240000),
+			new Order(19, 'mia', '2023-05-06', 'Đang chờ', 2, 'Chuyển khoản', orderDetail, 660000)
 		];
 	</script>
 
@@ -527,7 +542,7 @@
 		const rowsPerPage = 5; // Số hàng mỗi trang
 		let currentPage = 1; // Trang hiện tại
 		let filterOrder = orders;
-		let searchValue = '';;
+		let searchValue = '';
 		let statusValue = 'All';
 		document.getElementById('searchForm').addEventListener('submit', function (event) {
 			event.preventDefault(); // Ngăn không cho trình duyệt gửi biểu mẫu
@@ -538,16 +553,16 @@
 			document.getElementById('orders-all-tab').click()
 		});
 		document.querySelector('.form-select').addEventListener('change', () => {
-    		setupPagination(orders, document.getElementById('pagination'))
+			currentPage=1;
+			setupPagination(orders, document.getElementById('pagination'))
 		});
-		
+
 		function displayOrders(ordersData, page = 1) {
 			const tableBody = document.getElementById('ordersTable').getElementsByTagName('tbody')[0];
 			tableBody.innerHTML = ""; // Xóa dữ liệu hiện tại
 			const start = (page - 1) * rowsPerPage;
 			const end = start + rowsPerPage;
 			const paginatedItems = ordersData.slice(start, end);
-			console.log(paginatedItems)
 			paginatedItems.forEach(order => {
 				let statusClass = order.paymentStatus === 'Đã thanh toán' ? 'bg-success' : (order.paymentStatus === 'Đang chờ' ? 'bg-warning' : 'bg-danger')
 				let orderString = JSON.stringify(order).replace(/"/g, '&quot;');
@@ -622,7 +637,7 @@
 			// Time Filter
 			switch (selectedOption) {
 				case 'option-2': // This Week
-				ordersData = ordersData.filter(order => {
+					ordersData = ordersData.filter(order => {
 						const orderDate = new Date(order.orderDate);
 						const startOfWeek = currentDate.getDate() - currentDate.getDay();
 						const endOfWeek = startOfWeek + 6;
@@ -631,25 +646,25 @@
 					});
 					break;
 				case 'option-3': // This Month
-				ordersData = ordersData.filter(order => {
+					ordersData = ordersData.filter(order => {
 						const orderDate = new Date(order.orderDate);
 						return orderDate.getMonth() === currentDate.getMonth() &&
 							orderDate.getFullYear() === currentDate.getFullYear();
 					});
 					break;
 				case 'option-4': // This Year
-				ordersData = ordersData.filter(order => new Date(order.orderDate).getFullYear() === currentDate.getFullYear());
+					ordersData = ordersData.filter(order => new Date(order.orderDate).getFullYear() === currentDate.getFullYear());
 					break;
 				default: // All
-				ordersData = [...ordersData];
+					ordersData = [...ordersData];
 			}
-			
+
 			// Sort Date
 			ordersData.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
-			
+
 			// Search Filter
 			if (searchValue !== '')
-				ordersData = ordersData.filter(order => order.orderId.toLocaleString().includes(searchValue)||order.employee.toUpperCase().includes(searchValue));
+				ordersData = ordersData.filter(order => order.orderId.toLocaleString().includes(searchValue) || order.employee.toUpperCase().includes(searchValue));
 
 			// Payment status Filter
 			if (statusValue !== 'All')
@@ -660,7 +675,6 @@
 			}
 			filterOrder = ordersData;
 			let pageCount = Math.ceil(ordersData.length / rowsPerPage);
-			console.log('ordersData', ordersData)
 
 			displayOrders(ordersData, current);
 
@@ -734,7 +748,6 @@
 
 		//Hiển thị Modal Xem chi tiết		
 		function getDetail(orderS) {
-			console.log(orderS)
 			document.getElementById('orderDetailCardHead').innerHTML = `
 				<h5 style="margin: 0;" class="card-title">Mã Hóa Đơn: #${orderS.orderId}</h5>
 				<h6 style="margin: 0;" class="card-title">Ngày: ${orderS.orderDate}</h6>
@@ -805,9 +818,12 @@
 								</div>
 							<p style="text-align: right;" class="card-text">Nhân Viên: ${user.userFullname}</p>`
 
+			
+						}
+			if(orderS.userId === user.userId || orderS.userId === ""){
+				document.getElementById('selPaymentStatus').value = orderS.paymentStatus;
+				document.getElementById('selPaymentMethod').value = orderS.paymentMethod;
 			}
-			document.getElementById('selPaymentStatus').value = orderS.paymentStatus;
-			document.getElementById('selPaymentMethod').value = orderS.paymentMethod;
 			const tableBody = document.getElementById('EditOrderTableBody');
 			tableBody.innerHTML = ''
 			orderS.orderDetails.forEach(order => {
@@ -831,7 +847,6 @@
 
 		// Hàm lưu edit hóa đơn lên server 
 		function handleEditOrder(params) {
-			console.log(params)
 			let editOrder = {
 				paymentStatus: document.getElementById('selPaymentStatus').value,
 				paymentMethod: document.getElementById('selPaymentMethod').value,
