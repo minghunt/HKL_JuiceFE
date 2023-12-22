@@ -90,7 +90,7 @@
 									<li>
 										<hr class="dropdown-divider">
 									</li>
-									<li><a class="dropdown-item" href="login.html">Đăng xuất</a></li>
+									<li><a class="dropdown-item" href="login.html" onclick="localStorage.removeItem('loginUser')">Đăng xuất</a></li>
 								</ul>
 							</div><!--//app-user-dropdown-->
 						</div><!--//app-utilities-->
@@ -165,29 +165,9 @@
 								<span class="nav-link-text">Sản phẩm</span>
 							</a><!--//nav-link-->
 						</li><!--//nav-item-->
-						<li class="nav-item">
+						<li class="nav-item" id="user_nav">
 							<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-							<a class="nav-link  active" href="users.html">
-								<span class="nav-icon">
-									<svg width="24px" height="24px" viewBox="0 0 24.00 24.00"  class="bi bi-card-list"
-									fill="none"
-										xmlns="http://www.w3.org/2000/svg">
-										<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-										<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
-										</g>
-										<g id="SVGRepo_iconCarrier">
-											<path
-												d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
-												stroke="currentColor" stroke-width="1.392" stroke-linecap="round"
-												stroke-linejoin="round"></path>
-											<path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z"
-												stroke="currentColor" stroke-width="1.392" stroke-linecap="round"
-												stroke-linejoin="round"></path>
-										</g>
-									</svg>
-								</span>
-								<span class="nav-link-text">Người dùng</span>
-							</a><!--//nav-link-->
+							
 						</li>
 						<! <li class="nav-item has-submenu">
 							<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
@@ -376,7 +356,29 @@
 	</div><!--//app-wrapper-->
 
 	<script>
-
+		if(!localStorage.getItem('loginUser'))
+			window.location.href='/login.html'
+		else if(JSON.parse(localStorage.getItem('loginUser')).roleName==='Admin')
+			document.getElementById('user_nav').innerHTML=`
+			<a class="nav-link  active" href="users.html" >
+				<span class="nav-icon">
+					<svg width="24px" height="24px" viewBox="0 0 24.00 24.00"  class="bi bi-card-list" fill="none"
+						xmlns="http://www.w3.org/2000/svg">
+						<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+						<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+						<g id="SVGRepo_iconCarrier">
+							<path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
+								stroke="currentColor" stroke-width="1.392" stroke-linecap="round"
+								stroke-linejoin="round"></path>
+							<path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z"
+								stroke="currentColor" stroke-width="1.392" stroke-linecap="round"
+								stroke-linejoin="round"></path>
+						</g>
+					/svg>
+				</span>
+				<span class="nav-link-text">Người dùng</span>
+			</a><!--//nav-link-->`
+		else window.location.href='/index.html'
 		// Giả sử bạn đã có một mảng dữ liệu đơn hàng
 		const orders = [
 			{ id: "15346", product: "Lorem ipsum", employee: "John Sanders", date: "17 Oct 2:16 PM", status: "Paid", total: "$259.35" },

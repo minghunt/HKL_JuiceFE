@@ -90,7 +90,7 @@
 									<li>
 										<hr class="dropdown-divider">
 									</li>
-									<li><a class="dropdown-item" href="login.html">Đăng xuất</a></li>
+									<li><a class="dropdown-item" href="login.html" onclick="localStorage.removeItem('loginUser')">Đăng xuất</a></li>
 								</ul>
 							</div><!--//app-user-dropdown-->
 						</div><!--//app-utilities-->
@@ -165,29 +165,8 @@
 								<span class="nav-link-text">Sản phẩm</span>
 							</a><!--//nav-link-->
 						</li><!--//nav-item-->
-						<li class="nav-item">
-							<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-							<a class="nav-link" href="users.html">
-								<span class="nav-icon">
-									<svg width="24px" height="24px" viewBox="0 0 24.00 24.00"  class="bi bi-card-list"
-									fill="none"
-										xmlns="http://www.w3.org/2000/svg">
-										<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-										<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
-										</g>
-										<g id="SVGRepo_iconCarrier">
-											<path
-												d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
-												stroke="currentColor" stroke-width="1.392" stroke-linecap="round"
-												stroke-linejoin="round"></path>
-											<path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z"
-												stroke="currentColor" stroke-width="1.392" stroke-linecap="round"
-												stroke-linejoin="round"></path>
-										</g>
-									</svg>
-								</span>
-								<span class="nav-link-text">Người dùng</span>
-							</a><!--//nav-link-->
+						<li class="nav-item" id="user_nav">
+							
 						</li>
 						<! <li class="nav-item has-submenu">
 							<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
@@ -214,7 +193,7 @@
 							</a><!--//nav-link-->
 							<div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
 								<ul class="submenu-list list-unstyled">
-								
+
 									<li class="submenu-item"><a class="submenu-link" href="account.html">Tài khoản</a>
 									</li>
 									<li class="submenu-item"><a class="submenu-link" href="settings.html">Cài đặt</a>
@@ -222,7 +201,7 @@
 								</ul>
 							</div>
 							</li><!--//nav-item-->
-					
+
 
 
 
@@ -261,10 +240,9 @@
 
 		<div class="app-content pt-3 p-md-3 p-lg-4">
 			<div class="container-xl">
-
 				<div class="row g-3 mb-4 align-items-center justify-content-between">
 					<div class="col-auto">
-						<h1 class="app-page-title mb-0">Orders</h1>
+						<h1 class="app-page-title mb-0">Hóa đơn</h1>
 					</div>
 					<div class="col-auto">
 						<div class="page-utilities">
@@ -273,10 +251,10 @@
 									<form class="table-search-form row gx-1 align-items-center" id="searchForm">
 										<div class="col-auto">
 											<input type="text" id="search-orders" name="searchorders"
-												class="form-control search-orders" placeholder="Search">
+												class="form-control search-orders" placeholder="Nhập mã hóa đơn">
 										</div>
 										<div class="col-auto">
-											<button type="submit" class="btn app-btn-secondary">Search</button>
+											<button type="submit" class="btn app-btn-secondary">Tìm</button>
 										</div>
 									</form>
 
@@ -284,10 +262,10 @@
 								<div class="col-auto">
 
 									<select class="form-select w-auto">
-										<option selected value="option-1">All</option>
-										<option value="option-2">This week</option>
-										<option value="option-3">This month</option>
-										<option value="option-4">Last 3 months</option>
+										<option selected value="option-1">Tất cả</option>
+										<option value="option-2">Tuần này</option>
+										<option value="option-3">Tháng này</option>
+										<option value="option-4">Năm này</option>
 
 									</select>
 								</div>
@@ -300,7 +278,7 @@
 											<path fill-rule="evenodd"
 												d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
 										</svg>
-										Download CSV
+										Tải file Excel
 									</a>
 								</div>
 							</div><!--//row-->
@@ -312,15 +290,16 @@
 				<nav id="orders-table-tab"
 					class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
 					<a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab"
-						href="#orders-all" role="tab" aria-controls="orders-all" aria-selected="true">All</a>
+						href="#orders-all" role="tab" aria-controls="orders-all" aria-selected="true">Tất cả</a>
 					<a class="flex-sm-fill text-sm-center nav-link" id="orders-paid-tab" data-bs-toggle="tab"
-						href="#orders-paid" role="tab" aria-controls="orders-paid" aria-selected="false">Paid</a>
+						href="#orders-paid" role="tab" aria-controls="orders-paid" aria-selected="false">Đã thanh
+						toán</a>
 					<a class="flex-sm-fill text-sm-center nav-link" id="orders-pending-tab" data-bs-toggle="tab"
-						href="#orders-pending" role="tab" aria-controls="orders-pending"
-						aria-selected="false">Pending</a>
+						href="#orders-pending" role="tab" aria-controls="orders-pending" aria-selected="false">Đang
+						chờ</a>
 					<a class="flex-sm-fill text-sm-center nav-link" id="orders-cancelled-tab" data-bs-toggle="tab"
-						href="#orders-cancelled" role="tab" aria-controls="orders-cancelled"
-						aria-selected="false">Cancelled</a>
+						href="#orders-cancelled" role="tab" aria-controls="orders-cancelled" aria-selected="false">Đã
+						hủy</a>
 				</nav>
 
 
@@ -329,16 +308,17 @@
 						<div class="app-card app-card-orders-table shadow-sm mb-5">
 							<div class="app-card-body">
 								<div class="table-responsive">
-									<table id="ordersTable" class="table app-table-hover mb-0 text-left">
+									<table style="text-align: center;" id="ordersTable"
+										class="table app-table-hover mb-0 text-left">
 										<thead>
 											<tr>
-												<th class="cell">Order</th>
-												<th class="cell">Product</th>
+												<th class="cell">ID</th>
+												<th class="cell">Hóa đơn</th>
 												<th class="cell">Employee</th>
-												<th class="cell">Date</th>
-												<th class="cell">Status</th>
-												<th class="cell">Total</th>
-												<th class="cell"></th>
+												<th class="cell">Ngày</th>
+												<th class="cell">Trạng thái</th>
+												<th class="cell">Tổng tiền</th>
+												<th class="cell">Hành động</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -371,20 +351,44 @@
 
 			</div><!--//container-fluid-->
 		</div><!--//app-content-->
-		<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal fade" id="orderDetailModal" tabindex="-1" aria-labelledby="orderDetailModalLabel"
+			aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+						<h5 class="modal-title" id="orderDetailModalLabel">Chi tiết hóa đơn</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
-					<div class="modal-body">
-						<!-- Nội dung modal tại đây -->
-						Your content goes here...
+					<div class="modal-body" >
+						<div class="card order-card">
+							<div id="orderDetailCardHead" style="display: flex; justify-content: space-between;align-items: center;" class="card-header">
+							</div>
+							<div class="card-body"  >
+								<div id="orderDetailCardBody">
+								</div>
+						
+								<table style="text-align:center" class="table" id="orderTbody">
+									<thead>
+										<tr>
+											<th>Ảnh</th>
+											<th>Tên Sản Phẩm</th>
+											<th>Số Lượng</th>
+											<th>Thành Tiền</th>
+										</tr>
+									</thead>
+									<tbody  id="orderTableBody">
+										<!-- Lặp qua từng sản phẩm để tạo ra các hàng -->
+										
+									</tbody>
+									<tfoot id="orderTableFoot">
+										
+									</tfoot>
+								</table>
+							</div>
+						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary" >Save changes</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
 					</div>
 				</div>
 			</div>
@@ -393,41 +397,65 @@
 	</div><!--//app-wrapper-->
 
 	<script>
-		let user={
-			name:'123',
-			pwd:'123'
+		if(!localStorage.getItem('loginUser'))
+			window.location.href='/login.html'
+		else if(JSON.parse(localStorage.getItem('loginUser')).roleName==='Admin')
+		{console.log('true')
+			document.getElementById('user_nav').innerHTML=`
+			<a class="nav-link " href="users.html" >
+				<span class="nav-icon">
+					<svg width="24px" height="24px" viewBox="0 0 24.00 24.00"  class="bi bi-card-list" fill="none"
+						xmlns="http://www.w3.org/2000/svg">
+						<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+						<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+						<g id="SVGRepo_iconCarrier">
+							<path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
+								stroke="currentColor" stroke-width="1.392" stroke-linecap="round"
+								stroke-linejoin="round"></path>
+							<path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z"
+								stroke="currentColor" stroke-width="1.392" stroke-linecap="round"
+								stroke-linejoin="round"></path>
+						</g>
+					/svg>
+				</span>
+				<span class="nav-link-text">Người dùng</span>
+			</a><!--//nav-link-->`
 		}
-		localStorage.setItem('user', JSON.stringify(user));
-		var savedUser = JSON.parse(localStorage.getItem('user'));
-		//localStorage.removeItem('user');
-        console.log('Đã lưu user:', savedUser);
-		// Giả sử bạn đã có một mảng dữ liệu đơn hàng
-		const orders = [
-			{ id: "15346", product: "Lorem ipsum", employee: "John Sanders", date: "17 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15132", product: "Lorem ipsum", employee: "John Sanders", date: "15 Oct 2:16 PM", status: "Cancelled", total: "$259.35" },
-			{ id: "15321", product: "Lorem ipsum", employee: "John Sanders", date: "18 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15236", product: "Lorem ipsum", employee: "John Sanders", date: "23 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15236", product: "Lorem ipsum", employee: "John Sanders", date: "23 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15323", product: "Lorem ipsum", employee: "John Sanders", date: "20 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15323", product: "Lorem ipsum", employee: "John Sanders", date: "20 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15132", product: "Lorem ipsum", employee: "John Sanders", date: "15 Oct 2:16 PM", status: "Cancelled", total: "$259.35" },
-			{ id: "15132", product: "Lorem ipsum", employee: "John Sanders", date: "15 Oct 2:16 PM", status: "Cancelled", total: "$259.35" },
-			{ id: "15323", product: "Lorem ipsum", employee: "John Sanders", date: "20 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15323", product: "Lorem ipsum", employee: "John Sanders", date: "20 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15236", product: "Lorem ipsum", employee: "John Sanders", date: "23 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15423", product: "Lorem ipsum", employee: "John Sanders", date: "4 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15567", product: "Lorem ipsum", employee: "John Sanders", date: "8 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15567", product: "Lorem ipsum", employee: "John Sanders", date: "8 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15567", product: "Lorem ipsum", employee: "John Sanders", date: "8 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15567", product: "Lorem ipsum", employee: "John Sanders", date: "8 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15675", product: "Lorem ipsum", employee: "John Sanders", date: "28 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "25686", product: "Lorem ipsum", employee: "John Sanders", date: "11 Oct 2:16 PM", status: "Pending", total: "$259.35" },
-			{ id: "15132", product: "Lorem ipsum", employee: "John Sanders", date: "15 Oct 2:16 PM", status: "Cancelled", total: "$259.35" },
-			{ id: "15132", product: "Lorem ipsum", employee: "John Sanders", date: "15 Oct 2:16 PM", status: "Cancelled", total: "$259.35" },
-			{ id: "15132", product: "Lorem ipsum", employee: "John Sanders", date: "15 Oct 2:16 PM", status: "Cancelled", total: "$259.35" },
-			{ id: "15132", product: "Lorem ipsum", employee: "John Sanders", date: "15 Oct 2:16 PM", status: "Cancelled", total: "$259.35" },
-			// Các đơn hàng khác
+		
+
+		function OrderDetail(productName, price, quantity, imgUrl) {
+			this.productName = productName;
+			this.price = price;
+			this.quantity = quantity;
+			this.imgUrl = imgUrl; // Đối tượng Product
+		}
+		let orderDetail = [
+			new OrderDetail('cafe sua', 20000, 2, 'https://th.bing.com/th/id/OIP.Jox2bTmJay6PyXdpMw0FAQHaHa?rs=1&pid=ImgDetMain'),
+			new OrderDetail('cafe sua 2', 20000, 5, 'https://th.bing.com/th/id/OIP.Jox2bTmJay6PyXdpMw0FAQHaHa?rs=1&pid=ImgDetMain'),
+			new OrderDetail('cafe sua 3 ', 20000, 3, 'https://th.bing.com/th/id/OIP.Jox2bTmJay6PyXdpMw0FAQHaHa?rs=1&pid=ImgDetMain'),
+			new OrderDetail('cafe sua4', 20000, 1, 'https://th.bing.com/th/id/OIP.Jox2bTmJay6PyXdpMw0FAQHaHa?rs=1&pid=ImgDetMain'),
+		]
+		// Constructor cho Order
+		function Order(id, employee, orderDate, paymentStatus, userId, paymentMethod, orderDetails, orderTotal) {
+			this.orderId = id;
+			this.employee = employee;
+			this.orderDate = orderDate;
+			this.paymentStatus = paymentStatus;
+			this.userId = userId;
+			this.paymentMethod = paymentMethod;
+			this.orderDetails = orderDetails; // Đây sẽ là một mảng các OrderDetail
+			this.orderTotal = orderTotal; // Đây sẽ là một mảng các OrderDetail
+		}
+
+
+
+		// Tạo mảng đơn hàng giả
+		var orders = [
+			new Order(1, 'yasuo', '2023-12-01', 'Đã thanh toán', 1, 'Thẻ tín dụng', orderDetail, 123451556),
+			new Order(2, 'yesure', '2023-12-02', 'Đã hủy', 2, 'Chuyển khoản', orderDetail, 125500),
+			new Order(3, 'hehe', '2023-12-02', 'Đang chờ', 2, 'Chuyển khoản', orderDetail, 2342000)
 		];
+
 		function parseDate(dateStr) {
 			// Giả sử dateStr có định dạng "17 Oct 2:16 PM"
 			// Chuyển đổi thành định dạng có thể hiểu được bởi Date constructor
@@ -456,7 +484,37 @@
 			currentPage = 1;
 			document.getElementById('orders-all-tab').click()
 		});
+		function getDetail(orderS) {
+			console.log(orderS)
+			document.getElementById('orderDetailCardHead').innerHTML = `
+				<h5 style="margin: 0;" class="card-title">Mã Hóa Đơn: #${orderS.orderId}</h5>
+				<h6 style="margin: 0;" class="card-title">Ngày: ${orderS.orderDate}</h6>
+			`
+			document.getElementById('orderDetailCardBody').innerHTML = `
+				<p style="text-align: right;" class="card-text">Trạng Thái: ${orderS.paymentStatus}</p>
+				<p style="text-align: right;" class="card-text">Phương Thức: ${orderS.paymentMethod}</p>
+				<p style="text-align: right;" class="card-text">Nhân Viên: ${orderS.employee}</p>
+			`
+			const tableBody = document.getElementById('orderTableBody');
+			tableBody.innerHTML=''
+			orderS.orderDetails.forEach(order => {
+				let row =`
+					<tr valign='middle' >
+						<td><img style="width:70px;border-radius:20%;box-shadow:2px 2px 3px gray" src="${order.imgUrl} alt="Product Image" class="product-img"></td>
+						<td class="product-name">${order.productName}</td>
+						<td>2</td>
+						<td>1,000,000 VND</td>
+					</tr>`
+			tableBody.innerHTML += row;
+			});
 
+			document.getElementById('orderTableFoot').innerHTML = `
+				<tr>
+					<th colspan="3" style="text-align: right;">Tổng Tiền</th>
+					<th>${orderS.orderTotal}</th>
+				</tr>
+			`
+		}
 		// Hàm để thêm dữ liệu đơn hàng vào bảng
 		function displayOrders(ordersData, page = 1) {
 
@@ -467,19 +525,34 @@
 			const paginatedItems = ordersData.slice(start, end);
 			console.log(paginatedItems)
 			paginatedItems.forEach(order => {
-				let statusClass = order.status === 'Paid' ? 'bg-success' : (order.status === 'Pending' ? 'bg-warning' : 'bg-danger')
-				let row =
-					`
-				<tr>
-					<td class="cell">${order.id}</td>
-					<td class="cell"><span class="truncate">${order.product}</span></td>
-					<td class="cell">${order.employee}</td>
-					<td class="cell"><span>${order.date}</span><span class="note">${order.date}</span></td>
-					<td class="cell"><span class="badge ${statusClass}">${order.status}</span></td>
-					<td class="cell">${order.total}</td>
-					<td class="cell"><a class="btn-sm app-btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal" >View</a></td>
-				</tr>`
+				let statusClass = order.paymentStatus === 'Đã thanh toán' ? 'bg-success' : (order.paymentStatus === 'Đang chờ' ? 'bg-warning' : 'bg-danger')
+				let orderString = JSON.stringify(order).replace(/"/g, '&quot;');
 
+				let row =`
+				<tr>
+					<td class="cell">#${order.orderId}</td>
+					<td class="cell" ><a class="btn-sm app-btn-secondary" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#orderDetailModal"  onclick="getDetail(${orderString})">Xem chi tiết</a></td>
+
+					<td class="cell">${order.employee}</td>
+					<td class="cell"><span>${order.orderDate}</span><span class="note">${order.orderDate}</span></td>
+					<td class="cell"><span class="badge ${statusClass}">${order.paymentStatus}</span></td>
+					<td class="cell">${order.orderTotal.toLocaleString('vi-VN', {
+						style: 'currency',
+						currency: 'VND'
+					})}
+					</td>
+					<td class="cell">
+						<svg style="cursor:pointer;margin-right:2px" width="24px" height="24px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>edit_cover [#1481]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="#27c4b2" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-419.000000, -359.000000)" fill="#27c4b2"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M384,209.210475 L384,219 L363,219 L363,199.42095 L373.5,199.42095 L373.5,201.378855 L365.1,201.378855 L365.1,217.042095 L381.9,217.042095 L381.9,209.210475 L384,209.210475 Z M370.35,209.51395 L378.7731,201.64513 L380.4048,203.643172 L371.88195,212.147332 L370.35,212.147332 L370.35,209.51395 Z M368.25,214.105237 L372.7818,214.105237 L383.18415,203.64513 L378.8298,199 L368.25,208.687714 L368.25,214.105237 Z" id="edit_cover-[#1481]"> </path> </g> </g> </g> </g></svg>
+						<svg style="cursor:pointer" width="24px" height="24px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#fe4d4d"> <g id="Page-1" stroke="#fe4d4d" stroke-width="1" fill="none" fill-rule="evenodd">
+        					<g id="Dribbble-Light-Preview" transform="translate(-179.000000, -360.000000)" fill="#fe4d4d"">
+            					<g id="icons" transform="translate(56.000000, 160.000000)" >
+                					<path d="M130.35,216 L132.45,216 L132.45,208 L130.35,208 L130.35,216 Z M134.55,216 L136.65,216 L136.65,208 L134.55,208 L134.55,216 Z M128.25,218 L138.75,218 L138.75,206 L128.25,206 L128.25,218 Z M130.35,204 L136.65,204 L136.65,202 L130.35,202 L130.35,204 Z M138.75,204 L138.75,200 L128.25,200 L128.25,204 L123,204 L123,206 L126.15,206 L126.15,220 L140.85,220 L140.85,206 L144,206 L144,204 L138.75,204 Z" id="delete-[#1487]">
+										/path>
+   						         </g>
+        					</g>
+    						</g>
+						</svg>
+				</tr>`
 				tableBody.innerHTML += row;
 			});
 			document.querySelectorAll('.pagination .page-item').forEach(item => {
@@ -499,9 +572,9 @@
 		}
 		// Thêm sự kiện click cho từng tab
 		document.getElementById('orders-all-tab').addEventListener('click', () => filterOrdersByStatus('All'));
-		document.getElementById('orders-paid-tab').addEventListener('click', () => filterOrdersByStatus('Paid'));
-		document.getElementById('orders-pending-tab').addEventListener('click', () => filterOrdersByStatus('Pending'));
-		document.getElementById('orders-cancelled-tab').addEventListener('click', () => filterOrdersByStatus('Cancelled'));
+		document.getElementById('orders-paid-tab').addEventListener('click', () => filterOrdersByStatus('Đã thanh toán'));
+		document.getElementById('orders-pending-tab').addEventListener('click', () => filterOrdersByStatus('Đang chờ'));
+		document.getElementById('orders-cancelled-tab').addEventListener('click', () => filterOrdersByStatus('Đã hủy'));
 
 		function updatePaginationButtons(paginationElement, pageCount) {
 			const previousButton = paginationElement.querySelector('#previousPage');
@@ -526,7 +599,7 @@
 			if (searchValue !== '')
 				ordersData = ordersData.filter(order => order.id.toUpperCase().includes(searchValue));
 			if (statusValue !== 'All')
-				ordersData = ordersData.filter(order => order.status === statusValue);
+				ordersData = ordersData.filter(order => order.paymentStatus === statusValue);
 
 			while (paginationElement.children.length > 2) {
 				paginationElement.removeChild(paginationElement.children[1]);
