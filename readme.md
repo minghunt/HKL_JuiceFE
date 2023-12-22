@@ -28,3 +28,6 @@ Employee tạo mới bởi Admin
 
     + Bật model lên thêm sửa xóa
 
+/ Đăng nhập: TK, MK: 1, 1
+
++ Trang login.html dòng 72: Đổi roleName sang Admin thì được xem User
