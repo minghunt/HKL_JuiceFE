@@ -244,7 +244,7 @@
 
 				<div class="row g-3 mb-4 align-items-center justify-content-between">
 					<div class="col-auto">
-						<h1 class="app-page-title mb-0">Orders</h1>
+						<h1 class="app-page-title mb-0">Người dùng</h1>
 					</div>
 					<div class="col-auto">
 						<div class="page-utilities">
@@ -252,11 +252,11 @@
 								<div class="col-auto">
 									<form class="table-search-form row gx-1 align-items-center" id="searchForm">
 										<div class="col-auto">
-											<input type="text" id="search-orders" name="searchorders"
-												class="form-control search-orders" placeholder="Search">
+											<input type="text" id="search-users" name="searchorders"
+												class="form-control search-users" placeholder="Tìm kiếm">
 										</div>
 										<div class="col-auto">
-											<button type="submit" class="btn app-btn-secondary">Search</button>
+											<button type="submit" class="btn app-btn-secondary">Tìm</button>
 										</div>
 									</form>
 
@@ -264,10 +264,10 @@
 								<div class="col-auto">
 
 									<select class="form-select w-auto">
-										<option selected value="option-1">All</option>
-										<option value="option-2">This week</option>
-										<option value="option-3">This month</option>
-										<option value="option-4">Last 3 months</option>
+										<option selected value="option-1">Tất cả</option>
+										<option value="option-2">Tuần này</option>
+										<option value="option-3">Tháng này</option>
+										<option value="option-4">3 tháng trước</option>
 
 									</select>
 								</div>
@@ -280,7 +280,7 @@
 											<path fill-rule="evenodd"
 												d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
 										</svg>
-										Download CSV
+										Tải CSV
 									</a>
 								</div>
 							</div><!--//row-->
@@ -289,35 +289,31 @@
 				</div><!--//row-->
 
 
-				<nav id="orders-table-tab"
+				<nav id="users-table-tab"
 					class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
-					<a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab"
-						href="#orders-all" role="tab" aria-controls="orders-all" aria-selected="true">All</a>
-					<a class="flex-sm-fill text-sm-center nav-link" id="orders-paid-tab" data-bs-toggle="tab"
-						href="#orders-paid" role="tab" aria-controls="orders-paid" aria-selected="false">Paid</a>
-					<a class="flex-sm-fill text-sm-center nav-link" id="orders-pending-tab" data-bs-toggle="tab"
-						href="#orders-pending" role="tab" aria-controls="orders-pending"
-						aria-selected="false">Pending</a>
-					<a class="flex-sm-fill text-sm-center nav-link" id="orders-cancelled-tab" data-bs-toggle="tab"
-						href="#orders-cancelled" role="tab" aria-controls="orders-cancelled"
-						aria-selected="false">Cancelled</a>
+					<a class="flex-sm-fill text-sm-center nav-link active" id="users-all-tab" data-bs-toggle="tab"
+						href="#users-all" role="tab" aria-controls="users-all" aria-selected="true">Tất cả</a>
+					<a class="flex-sm-fill text-sm-center nav-link" id="users-manager-tab" data-bs-toggle="tab"
+						href="#users-paid" role="tab" aria-controls="users-paid" aria-selected="false">Quản lý</a>
+					<a class="flex-sm-fill text-sm-center nav-link" id="users-employee-tab" data-bs-toggle="tab"
+						href="#users-pending" role="tab" aria-controls="users-pending"
+						aria-selected="false">Nhân viên</a>
 				</nav>
 
 
 				<div class="tab-content">
-					<div role="tabpanel" aria-labelledby="orders-all-tab">
+					<div role="tabpanel" aria-labelledby="users-all-tab">
 						<div class="app-card app-card-orders-table shadow-sm mb-5">
 							<div class="app-card-body">
 								<div class="table-responsive">
-									<table id="ordersTable" class="table app-table-hover mb-0 text-left">
+									<table id="usersTable" class="table app-table-hover mb-0 text-left">
 										<thead>
 											<tr>
-												<th class="cell">Order</th>
-												<th class="cell">Product</th>
-												<th class="cell">Employee</th>
-												<th class="cell">Date</th>
-												<th class="cell">Status</th>
-												<th class="cell">Total</th>
+												<th class="cell">Mã nhân viên</th>
+												<th class="cell">Họ tên</th>
+												<th class="cell">Số điện thoại</th>
+												<th class="cell">Ngày vào làm</th>
+												<th class="cell">Chức vụ</th>
 												<th class="cell"></th>
 											</tr>
 										</thead>
@@ -332,11 +328,11 @@
 						<nav class="app-pagination">
 							<ul class="pagination justify-content-center" id="pagination">
 								<li class="page-item" id="previousPage">
-									<a class="page-link">Previous</a>
+									<a class="page-link">Trước</a>
 								</li>
 								<!-- Các nút trang sẽ được thêm vào đây bằng JavaScript -->
 								<li class="page-item " id="nextPage">
-									<a class="page-link ">Next</a>
+									<a class="page-link ">Sau</a>
 								</li>
 							</ul>
 						</nav>
@@ -380,54 +376,63 @@
 			</a><!--//nav-link-->`
 		else window.location.href='/index.html'
 		// Giả sử bạn đã có một mảng dữ liệu đơn hàng
-		const orders = [
-			{ id: "15346", product: "Lorem ipsum", employee: "John Sanders", date: "17 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15321", product: "Lorem ipsum", employee: "John Sanders", date: "17 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15323", product: "Lorem ipsum", employee: "John Sanders", date: "17 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15236", product: "Lorem ipsum", employee: "John Sanders", date: "17 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15423", product: "Lorem ipsum", employee: "John Sanders", date: "17 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15567", product: "Lorem ipsum", employee: "John Sanders", date: "17 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15675", product: "Lorem ipsum", employee: "John Sanders", date: "17 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "25686", product: "Lorem ipsum", employee: "John Sanders", date: "17 Oct 2:16 PM", status: "Paid", total: "$259.35" },
-			{ id: "15676", product: "Lorem ipsum", employee: "John Sanders", date: "17 Oct 2:16 PM", status: "Pending", total: "$259.35" },
-			{ id: "15132", product: "Lorem ipsum", employee: "John Sanders", date: "17 Oct 2:16 PM", status: "Cancelled", total: "$259.35" },
+		const users = [
+			{ id: "0001", userFullname: "Nguyễn Quốc Kỳ", userPhone: "012 3456 789", dayBegin: "02/11/2023", roleId: 1},
+			{ id: "0002", userFullname: "Nguyễn Quốc Kỳ", userPhone: "012 3456 789", dayBegin: "02/11/2023", roleId: 2},
+			{ id: "0003", userFullname: "Nguyễn Quốc Kỳ", userPhone: "012 3456 789", dayBegin: "02/11/2023", roleId: 2},
+			{ id: "0004", userFullname: "Nguyễn Quốc Kỳ", userPhone: "012 3456 789", dayBegin: "02/11/2023", roleId: 2},
+			{ id: "0005", userFullname: "Nguyễn Quốc Kỳ", userPhone: "012 3456 789", dayBegin: "02/11/2023", roleId: 1},
+			{ id: "0006", userFullname: "Nguyễn Quốc Kỳ", userPhone: "012 3456 789", dayBegin: "02/11/2023", roleId: 1},
+			{ id: "0007", userFullname: "Nguyễn Quốc Kỳ", userPhone: "012 3456 789", dayBegin: "02/11/2023", roleId: 1},
 			// Các đơn hàng khác
 		];
 		const rowsPerPage = 3; // Số hàng mỗi trang
 		let currentPage = 1; // Trang hiện tại
-		let filterOrder = orders;
+		let filterOrder = users;
 		let searchValue='';;
-		let statusValue='All';
+		let roleIdValue='All';
 		document.getElementById('searchForm').addEventListener('submit', function (event) {	
 			event.preventDefault(); // Ngăn không cho trình duyệt gửi biểu mẫu
-			const inputValue = document.getElementById('search-orders').value.trim().toUpperCase();
+			const inputValue = document.getElementById('search-users').value.trim().toUpperCase();
 			searchValue=inputValue;
-			setupPagination(orders,document.getElementById('pagination'))
+			setupPagination(users, document.getElementById('pagination'))
 			currentPage=1;
-			document.getElementById('orders-all-tab').click()
+			document.getElementById('users-all-tab').click()
 		});
 
 		// Hàm để thêm dữ liệu đơn hàng vào bảng
-		function displayOrders(ordersData, page = 1) {
+		function displayUsers(usersData, page = 1) {
 
-			const tableBody = document.getElementById('ordersTable').getElementsByTagName('tbody')[0];
+			const tableBody = document.getElementById('usersTable').getElementsByTagName('tbody')[0];
 			tableBody.innerHTML = ""; // Xóa dữ liệu hiện tại
 			const start = (page - 1) * rowsPerPage;
 			const end = start + rowsPerPage;
-			const paginatedItems = ordersData.slice(start, end);
+			const paginatedItems = usersData.slice(start, end);
 			console.log(paginatedItems)
-			paginatedItems.forEach(order => {
-				let statusClass = order.status === 'Paid' ? 'bg-success' : (order.status === 'Pending' ? 'bg-warning' : 'bg-danger')
+			paginatedItems.forEach(user => {
+				let roleClass = user.roleId === 1 ? 'bg-success' : 'bg-warning';
+				let roleLabel = user.roleId === 1 ? 'Quản lý' : 'Nhân viên';
 				let row =
 					`
 				<tr>
-					<td class="cell">${order.id}</td>
-					<td class="cell"><span class="truncate">${order.product}</span></td>
-					<td class="cell">${order.employee}</td>
-					<td class="cell"><span>17 Oct</span><span class="note">${order.date}</span></td>
-					<td class="cell"><span class="badge ${statusClass}">${order.status}</span></td>
-					<td class="cell">${order.total}</td>
-					<td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
+					<td class="cell">${user.id}</td>
+					<td class="cell"><span class="truncate">${user.userFullname}</span></td>
+					<td class="cell">${user.userPhone}</td>
+					<td class="cell"><span class="note">${user.dayBegin}</span></td>
+					<td class="cell"><span class="badge ${roleClass}">${roleLabel}</span></td>
+					<td class="cell">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+							<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+							<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+						</svg>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+							<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+							<path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+						</svg>
+					</td>
+					<td class="cell">
+						
+					</td>
 				</tr>`
 
 				tableBody.innerHTML += row;
@@ -437,21 +442,20 @@
 			});
 
 			// Cập nhật trạng thái của nút 'Previous' và 'Next'
-			updatePaginationButtons(document.getElementById('pagination'), Math.ceil(ordersData.length / rowsPerPage));
+			updatePaginationButtons(document.getElementById('pagination'), Math.ceil(usersData.length / rowsPerPage));
 
 		}
 
 		// Hàm lọc đơn hàng theo trạng thái
-		function filterOrdersByStatus(status) {
-			statusValue=status;
+		function filterUsersByRole(status) {
+			roleIdValue=status;
 			currentPage=1
-			setupPagination(orders, document.getElementById('pagination'));
+			setupPagination(users, document.getElementById('pagination'));
 		}
 		// Thêm sự kiện click cho từng tab
-		document.getElementById('orders-all-tab').addEventListener('click', () => filterOrdersByStatus('All'));
-		document.getElementById('orders-paid-tab').addEventListener('click', () => filterOrdersByStatus('Paid'));
-		document.getElementById('orders-pending-tab').addEventListener('click', () => filterOrdersByStatus('Pending'));
-		document.getElementById('orders-cancelled-tab').addEventListener('click', () => filterOrdersByStatus('Cancelled'));
+		document.getElementById('users-all-tab').addEventListener('click', () => filterUsersByRole('All'));
+		document.getElementById('users-manager-tab').addEventListener('click', () => filterUsersByRole(1));
+		document.getElementById('users-employee-tab').addEventListener('click', () => filterUsersByRole(2));
 
 		function updatePaginationButtons(paginationElement, pageCount) {
 			const previousButton = paginationElement.querySelector('#previousPage');
@@ -471,21 +475,21 @@
 
 		}
 
-		function setupPagination(ordersData, paginationElement,current=currentPage) {
+		function setupPagination(usersData, paginationElement, current=currentPage) {
 			// Xóa các nút trang số hiện tại
 			if (searchValue!=='')
-				ordersData = ordersData.filter(order => order.id.toUpperCase().includes(searchValue));
-			if (statusValue!=='All')
-				ordersData = ordersData.filter(order => order.status===statusValue);
+				usersData = usersData.filter(user => user.id.toUpperCase().includes(searchValue));
+			if (roleIdValue!=='All')
+				usersData = usersData.filter(user => user.roleId === roleIdValue);
 			
 			while (paginationElement.children.length > 2) {
 				paginationElement.removeChild(paginationElement.children[1]);
 			}
-			filterOrder=ordersData;
-			let pageCount = Math.ceil(ordersData.length / rowsPerPage);
-			console.log('ordersData',ordersData)
+			filterUsers=usersData;
+			let pageCount = Math.ceil(usersData.length / rowsPerPage);
+			console.log('usersData',usersData)
 
-			displayOrders(ordersData, current);
+			displayUsers(usersData, current);
 
 			for (let i = 1; i <= pageCount; i++) {
 				let pageItem = document.createElement('li');
@@ -498,7 +502,7 @@
 				pageItem.addEventListener('click', (event) => {
 					event.preventDefault(); // Ngăn không cho trình duyệt chuyển hướng
 					currentPage = i;
-					setupPagination(ordersData, document.getElementById('pagination'),i);
+					setupPagination(usersData, document.getElementById('pagination'),i);
 
 				});
 				paginationElement.insertBefore(pageItem, paginationElement.querySelector('#nextPage'));
@@ -510,19 +514,19 @@
 		document.getElementById('previousPage').addEventListener('click', () => {
 			if (currentPage > 1) {
 				currentPage--;
-				setupPagination(filterOrder,  document.getElementById('pagination'));
+				setupPagination(filterUsers,  document.getElementById('pagination'));
 			}
 		});
 
 		document.getElementById('nextPage').addEventListener('click', () => {
-			if (currentPage * rowsPerPage < filterOrder.length) {
+			if (currentPage * rowsPerPage < filterUsers.length) {
 				currentPage++;
-				setupPagination(filterOrder,  document.getElementById('pagination'));
+				setupPagination(filterUsers,  document.getElementById('pagination'));
 			}
 		});
 
 		window.onload = () => {
-			setupPagination(orders, document.getElementById('pagination'));
+			setupPagination(users, document.getElementById('pagination'));
 		};
 		// Hiển thị tất cả đơn hàng khi trang tải xong
 	</script>
