@@ -480,20 +480,7 @@
                                     </div>
                                     <!--//col-->
                                     <div class="col-auto">
-                                        <select class="form-select w-auto">
-                                            <option selected value="option-1">
-                                                All
-                                            </option>
-                                            <option value="option-2">
-                                                This week
-                                            </option>
-                                            <option value="option-3">
-                                                This month
-                                            </option>
-                                            <option value="option-4">
-                                                Last 3 months
-                                            </option>
-                                        </select>
+                                        <button class="btn app-btn-secondary" style="background-color: #5edd93; color: #fff;" data-bs-toggle="modal" data-bs-target="#addProductModal" onclick="addProduct()">Thêm sản phẩm</button>
                                     </div>
                                     <div class="col-auto">
                                         <a
@@ -541,7 +528,7 @@
                             role="tab"
                             aria-controls="products-all"
                             aria-selected="true"
-                            >All</a
+                            >Tất cả</a
                         >
                         <a
                             class="flex-sm-fill text-sm-center nav-link"
@@ -551,7 +538,7 @@
                             role="tab"
                             aria-controls="products-coffee"
                             aria-selected="false"
-                            >Coffee</a
+                            >Cà phê</a
                         >
                         <a
                             class="flex-sm-fill text-sm-center nav-link"
@@ -561,7 +548,7 @@
                             role="tab"
                             aria-controls="products-juice"
                             aria-selected="false"
-                            >Juice</a
+                            >Nước ép</a
                         >
                         <a
                             class="flex-sm-fill text-sm-center nav-link"
@@ -571,7 +558,7 @@
                             role="tab"
                             aria-controls="products-tea"
                             aria-selected="false"
-                            >Tea</a
+                            >Trà</a
                         >
                     </nav>
 
@@ -588,6 +575,7 @@
                                 <div class="app-card-body">
                                     <div class="table-responsive">
                                         <table
+                                            style="text-align: center"
                                             class="table app-table-hover mb-0 text-left"
                                             id="productsTable"
                                         >
@@ -775,7 +763,222 @@
                     </div>
                     <!--//tab-content-->
                 </div>
+
                 <!--//container-fluid-->
+
+                <!--//Modal View-->
+                <div
+                    class="modal fade"
+                    id="productDetailModal"
+                    tabindex="-1"
+                    aria-labelledby="productDetailModalLabel"
+                    aria-hidden="true"
+                >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5
+                                    class="modal-title"
+                                    id="productDetailModalLabel"
+                                >
+                                    Chi tiết sản phẩm
+                                </h5>
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                ></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="card product-card">
+                                    <table
+                                        style="
+                                            border: none;
+                                            vertical-align: middle;
+                                        "
+                                        class="table"
+                                        id="productBody"
+                                    ></table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-bs-dismiss="modal"
+                                >
+                                    Đóng
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--//Modal Edit-->
+                <div
+                    class="modal fade"
+                    id="editProductModal"
+                    tabindex="-1"
+                    aria-labelledby="editProductModalLabel"
+                    aria-hidden="true"
+                >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5
+                                    class="modal-title"
+                                    id="editProductModalLabel"
+                                >
+                                    Sửa sản phẩm
+                                </h5>
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                ></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="card product-card">
+                                    <table
+                                        style="
+                                            border: none;
+                                            vertical-align: middle;
+                                            display: flex;
+                                            flex-direction: column;
+                                            align-items: center;
+                                        "
+                                        class="table"
+                                        id="editProductBody"
+                                    ></table>
+                                </div>
+                            </div>
+                            <div
+                                class="modal-footer"
+                                id="editProductModalFooter"
+                            >
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-bs-dismiss="modal"
+                                >
+                                    Đóng
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--//Modal Delete-->
+                <div
+                    class="modal fade"
+                    id="deleteProductModal"
+                    tabindex="-1"
+                    aria-labelledby="deleteProductModalLabel"
+                    aria-hidden="true"
+                >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Xóa sản phẩm</h5>
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                ></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="card product-card">
+                                    <div
+                                        id="deleteProductCardHead"
+                                        style="
+                                            display: flex;
+                                            justify-content: space-between;
+                                            align-items: center;
+                                        "
+                                        class="card-header"
+                                    ></div>
+                                    <div class="card-body">
+                                        <!-- <h4>
+                                            Bạn có chắc chắc muốn xóa sản phẩm
+                                            này không?
+                                        </h4> -->
+                                        <div id="deleteProductCardBody"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="modal-footer"
+                                id="deleteProductModelFooter"
+                            >
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-bs-dismiss="modal"
+                                >
+                                    Đóng
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--//Modal Add-->
+                <div
+                    class="modal fade"
+                    id="addProductModal"
+                    tabindex="-1"
+                    aria-labelledby="addProductModalLabel"
+                    aria-hidden="true"
+                >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5
+                                    class="modal-title"
+                                    id="addProductModalLabel"
+                                >
+                                    Thêm sản phẩm
+                                </h5>
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                ></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="card product-card">
+                                    <table
+                                        style="
+                                            border: none;
+                                            vertical-align: middle;
+                                            display: flex;
+                                            flex-direction: column;
+                                            align-items: center;
+                                        "
+                                        class="table"
+                                        id="addProductBody"
+                                    ></table>
+                                </div>
+                            </div>
+                            <div
+                                class="modal-footer"
+                                id="addProductModalFooter"
+                            >
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-bs-dismiss="modal"
+                                >
+                                    Đóng
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!--//app-content-->
         </div>
@@ -797,52 +1000,73 @@
                 "Admin"
             )
                 document.getElementById("user_nav").innerHTML = `
-			<a class="nav-link " href="users.html" >
-				<span class="nav-icon">
-					<svg width="24px" height="24px" viewBox="0 0 24.00 24.00"  class="bi bi-card-list" fill="none"
-						xmlns="http://www.w3.org/2000/svg">
-						<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-						<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-						<g id="SVGRepo_iconCarrier">
-							<path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
-								stroke="currentColor" stroke-width="1.392" stroke-linecap="round"
-								stroke-linejoin="round"></path>
-							<path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z"
-								stroke="currentColor" stroke-width="1.392" stroke-linecap="round"
-								stroke-linejoin="round"></path>
-						</g>
-					/svg>
-				</span>
-				<span class="nav-link-text">Người dùng</span>
-			</a><!--//nav-link-->`;
+            <a class="nav-link " href="users.html" >
+            	<span class="nav-icon">
+            		<svg width="24px" height="24px" viewBox="0 0 24.00 24.00"  class="bi bi-card-list" fill="none"
+            			xmlns="http://www.w3.org/2000/svg">
+            			<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            			<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            			<g id="SVGRepo_iconCarrier">
+            				<path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
+            					stroke="currentColor" stroke-width="1.392" stroke-linecap="round"
+            					stroke-linejoin="round"></path>
+            				<path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z"
+            					stroke="currentColor" stroke-width="1.392" stroke-linecap="round"
+            					stroke-linejoin="round"></path>
+            			</g>
+            		/svg>
+            	</span>
+            	<span class="nav-link-text">Người dùng</span>
+            </a><!--//nav-link-->`;
 
             // Constructor for ProductDetail
-            // function ProductDetail(productName, price, CategoryID, desc, imgUrl) {
-            //     this.productName = productName;
-            //     this.price = price;
-            //     this.CategoryID = CategoryID;
-            //     this. desc = desc;
-            //     this.imgUrl = imgUrl;
-            // }
+            function ProductDetail(
+                productId,
+                productName,
+                price,
+                categoryId,
+                categoryName,
+                desc,
+                imgUrl
+            ) {
+                this.productId = productId;
+                this.productName = productName;
+                this.price = price;
+                this.categoryId = categoryId;
+                this.categoryName = categoryName;
+                this.desc = desc;
+                this.imgUrl = imgUrl;
+            }
             // A ProductDetail variable
-            // let ProductDetail = [
-            //     new ProductDetail('cafe sua 1', 20000, 1, 'cafe sua ngon nhat qua dat','http://tinyurl.com/ykrwryjy')
-            // ]
+            let productDetail = [
+                new ProductDetail(
+                    1,
+                    "cafe sua 1",
+                    20000,
+                    1,
+                    "Cà phê",
+                    "cafe sua ngon nhat qua dat",
+                    "http://tinyurl.com/ykrwryjy"
+                ),
+            ];
 
             // Constructor for Product
 
             function Product(
-                id,
+                productId,
                 productName,
+                categoryId,
                 categoryName,
                 price,
                 desc,
                 imgUrl
             ) {
-                this.id = id;
+                this.productId = productId;
                 this.productName = productName;
+                this.categoryId = categoryId;
                 this.categoryName = categoryName;
-                (this.price = price), (this.desc = desc);
+                this.price = price,
+                this.desc = desc;
                 this.imgUrl = imgUrl;
             }
 
@@ -851,7 +1075,8 @@
                 new Product(
                     1,
                     "cahe sua",
-                    "coffee",
+                    1,
+                    "Cà phê",
                     20000,
                     "cahe ngon vl",
                     "http://tinyurl.com/ykrwryjy"
@@ -859,7 +1084,8 @@
                 new Product(
                     2,
                     "cahe sua",
-                    "juice",
+                    2,
+                    "Nước ép",
                     20000,
                     "cahe ngon vl",
                     "http://tinyurl.com/ykrwryjy"
@@ -867,7 +1093,8 @@
                 new Product(
                     3,
                     "cahe sua",
-                    "tea",
+                    3,
+                    "Trà",
                     20000,
                     "cahe ngon vl",
                     "http://tinyurl.com/ykrwryjy"
@@ -875,7 +1102,8 @@
                 new Product(
                     4,
                     "cahe sua",
-                    "juice",
+                    2,
+                    "Nước ép",
                     20000,
                     "cahe ngon vl",
                     "http://tinyurl.com/ykrwryjy"
@@ -883,7 +1111,8 @@
                 new Product(
                     5,
                     "cahe sua",
-                    "tea",
+                    3,
+                    "Trà",
                     20000,
                     "cahe ngon vl",
                     "http://tinyurl.com/ykrwryjy"
@@ -891,7 +1120,8 @@
                 new Product(
                     6,
                     "cahe sua",
-                    "juice",
+                    2,
+                    "Nước ép",
                     20000,
                     "cahe ngon vl",
                     "http://tinyurl.com/ykrwryjy"
@@ -899,7 +1129,8 @@
                 new Product(
                     7,
                     "cahe sua",
-                    "coffee",
+                    1,
+                    "Cà phê",
                     20000,
                     "cahe ngon vl",
                     "http://tinyurl.com/ykrwryjy"
@@ -907,7 +1138,8 @@
                 new Product(
                     8,
                     "cahe sua",
-                    "coffee",
+                    1,
+                    "Cà phê",
                     20000,
                     "cahe ngon vl",
                     "http://tinyurl.com/ykrwryjy"
@@ -915,18 +1147,21 @@
                 new Product(
                     9,
                     "cahe sua",
-                    "tea",
+                    3,
+                    "Trà",
                     20000,
                     "cahe ngon vl",
                     "http://tinyurl.com/ykrwryjy"
                 ),
             ];
 
+            // console.log(products);
+
             const rowsPerPage = 5; // 5 product in a page
             let currentPage = 1;
             let filterProduct = products;
             let searchValue = "";
-            let categoryValue = "All";
+            let categoryValue = "Tất cả";
 
             document
                 .getElementById("searchForm")
@@ -944,54 +1179,55 @@
                     currentPage = 1;
                     document.getElementById("products-all-tab").click();
                 });
-            // function getDetail(product) {
-            // 	console.log(product)
-            // 	document.getElementById('orderDetailCardHead').innerHTML = `
-            // 		<h5 style="margin: 0;" class="card-title">Mã Hóa Đơn: #${orderS.orderId}</h5>
-            // 		<h6 style="margin: 0;" class="card-title">Ngày: ${orderS.orderDate}</h6>
-            // 	`
-            // 	document.getElementById('orderDetailCardBody').innerHTML = `
-            // 		<p style="text-align: right;" class="card-text">Trạng Thái: ${orderS.paymentStatus}</p>
-            // 		<p style="text-align: right;" class="card-text">Phương Thức: ${orderS.paymentMethod}</p>
-            // 		<p style="text-align: right;" class="card-text">Nhân Viên: ${orderS.employee}</p>
-            // 	`
-            // 	const tableBody = document.getElementById('orderTableBody');
-            // 	tableBody.innerHTML=''
-            // 	orderS.orderDetails.forEach(order => {
-            // 		let row =`
-            // 			<tr valign='middle' >
-            // 				<td><img style="width:70px;border-radius:20%;box-shadow:2px 2px 3px gray" src="${order.imgUrl} alt="Product Image" class="product-img"></td>
-            // 				<td class="product-name">${order.productName}</td>
-            // 				<td>2</td>
-            // 				<td>1,000,000 VND</td>
-            // 			</tr>`
-            // 	tableBody.innerHTML += row;
-            // 	});
 
-            // 	document.getElementById('orderTableFoot').innerHTML = `
-            // 		<tr>
-            // 			<th colspan="3" style="text-align: right;">Tổng Tiền</th>
-            // 			<th>${orderS.orderTotal}</th>
-            // 		</tr>
-            // 	`
-            // }
+            // Show detail product modal
+            function getDetail(product) {
+                console.log(product);
+                document.getElementById("productBody").innerHTML = `
+            		<tr style="border: none">
+                        <td rowspan="3" style="border: none; text-align: center"><img src="${
+                            product.imgUrl
+                        }" style="width:300px" "></td>
+                        <td style="border: none; font-size: 20px; font-weight: bold">${
+                            product.productName
+                        } #${product.productId} </td>
+                    </tr>
+                    <tr style="border: none">
+                        <td style="border: none">${product.price.toLocaleString(
+                            "vi-VN",
+                            {
+                                style: "currency",
+                                currency: "VND",
+                            }
+                        )}</td>
+                    </tr>
+                    <tr style="border: none">
+                        <td style="border: none">${product.categoryName}</td>
+                    </tr>
+                    <tr style="border: none">
+                        <td colspan="2" style="border: none">${
+                            product.desc
+                        }</td>
+                    </tr>
+            	`;
+            }
             // Hàm để thêm dữ liệu đơn hàng vào bảng
 
             function getTableBodyByCategory(categoryValue) {
                 switch (categoryValue) {
-                    case "All":
+                    case "Tất cả":
                         return document
                             .getElementById("productsTable")
                             .getElementsByTagName("tbody")[0];
-                    case "coffee":
+                    case "Cà phê":
                         return document
                             .getElementById("productsTable_coffee")
                             .getElementsByTagName("tbody")[0];
-                    case "juice":
+                    case "Nước ép":
                         return document
                             .getElementById("productsTable_juice")
                             .getElementsByTagName("tbody")[0];
-                    case "tea":
+                    case "Trà":
                         return document
                             .getElementById("productsTable_tea")
                             .getElementsByTagName("tbody")[0];
@@ -1018,32 +1254,32 @@
                     );
 
                     let row = `
-				<tr>
-					<td class="cell">#${product.id}</td>
-					<td class="cell"><img src='${
+            	<tr>
+            		<td class="cell">#${product.productId}</td>
+            		<td class="cell"><img src='${
                         product.imgUrl
                     }' style='width: 200px; height: 150px;'></td>
-					<td class="cell">${product.productName}</td>
-					<td class="cell">${product.price.toLocaleString("vi-VN", {
+            		<td class="cell">${product.productName}</td>
+            		<td class="cell">${product.price.toLocaleString("vi-VN", {
                         style: "currency",
                         currency: "VND",
                     })}
-                    <td class="cell">${product.categoryName}</td>
-                    <td class="cell">
-						<svg style="cursor:pointer;margin-right:2px" width="24px" height="24px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>edit_cover [#1481]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="#27c4b2" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-419.000000, -359.000000)" fill="#27c4b2"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M384,209.210475 L384,219 L363,219 L363,199.42095 L373.5,199.42095 L373.5,201.378855 L365.1,201.378855 L365.1,217.042095 L381.9,217.042095 L381.9,209.210475 L384,209.210475 Z M370.35,209.51395 L378.7731,201.64513 L380.4048,203.643172 L371.88195,212.147332 L370.35,212.147332 L370.35,209.51395 Z M368.25,214.105237 L372.7818,214.105237 L383.18415,203.64513 L378.8298,199 L368.25,208.687714 L368.25,214.105237 Z" id="edit_cover-[#1481]"> </path> </g> </g> </g> </g></svg>
-						<svg style="cursor:pointer" width="24px" height="24px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#fe4d4d"> <g id="Page-1" stroke="#fe4d4d" stroke-width="1" fill="none" fill-rule="evenodd">
-        					<g id="Dribbble-Light-Preview" transform="translate(-179.000000, -360.000000)" fill="#fe4d4d"">
-            					<g id="icons" transform="translate(56.000000, 160.000000)" >
-                					<path d="M130.35,216 L132.45,216 L132.45,208 L130.35,208 L130.35,216 Z M134.55,216 L136.65,216 L136.65,208 L134.55,208 L134.55,216 Z M128.25,218 L138.75,218 L138.75,206 L128.25,206 L128.25,218 Z M130.35,204 L136.65,204 L136.65,202 L130.35,202 L130.35,204 Z M138.75,204 L138.75,200 L128.25,200 L128.25,204 L123,204 L123,206 L126.15,206 L126.15,220 L140.85,220 L140.85,206 L144,206 L144,204 L138.75,204 Z" id="delete-[#1487]">
-										/path>
-   						         </g>
-        					</g>
-    						</g>
-						</svg>
-                    </td>
-					<td class="cell" ><a class="btn-sm app-btn-secondary" style="cursor:pointer")">Xem chi tiết</a></td>
+                             <td class="cell">${product.categoryName}</td>
+                             <td class="cell">
+            			<svg style="cursor:pointer;margin-right:2px" data-bs-toggle="modal" data-bs-target="#editProductModal" onclick="editProduct(${productString})" width="24px" height="24px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>edit_cover [#1481]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="#27c4b2" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-419.000000, -359.000000)" fill="#27c4b2"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M384,209.210475 L384,219 L363,219 L363,199.42095 L373.5,199.42095 L373.5,201.378855 L365.1,201.378855 L365.1,217.042095 L381.9,217.042095 L381.9,209.210475 L384,209.210475 Z M370.35,209.51395 L378.7731,201.64513 L380.4048,203.643172 L371.88195,212.147332 L370.35,212.147332 L370.35,209.51395 Z M368.25,214.105237 L372.7818,214.105237 L383.18415,203.64513 L378.8298,199 L368.25,208.687714 L368.25,214.105237 Z" id="edit_cover-[#1481]"> </path> </g> </g> </g> </g></svg>
+            			<svg style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#deleteProductModal" onclick="deleteProduct(${productString})" width="24px" height="24px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#fe4d4d"> <g id="Page-1" stroke="#fe4d4d" stroke-width="1" fill="none" fill-rule="evenodd">
+                 					<g id="Dribbble-Light-Preview" transform="translate(-179.000000, -360.000000)" fill="#fe4d4d"">
+                     					<g id="icons" transform="translate(56.000000, 160.000000)" >
+                         					<path d="M130.35,216 L132.45,216 L132.45,208 L130.35,208 L130.35,216 Z M134.55,216 L136.65,216 L136.65,208 L134.55,208 L134.55,216 Z M128.25,218 L138.75,218 L138.75,206 L128.25,206 L128.25,218 Z M130.35,204 L136.65,204 L136.65,202 L130.35,202 L130.35,204 Z M138.75,204 L138.75,200 L128.25,200 L128.25,204 L123,204 L123,206 L126.15,206 L126.15,220 L140.85,220 L140.85,206 L144,206 L144,204 L138.75,204 Z" id="delete-[#1487]">
+            							/path>
+            						         </g>
+                 					</g>
+             						</g>
+            			</svg>
+                             </td>
+            		<td class="cell" ><a class="btn-sm app-btn-secondary" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#productDetailModal"  onclick="getDetail(${productString})">Xem chi tiết</a></td>
 
-				</tr>`;
+            	</tr>`;
                     tableBody.innerHTML += row;
                 });
                 document
@@ -1072,22 +1308,22 @@
             document
                 .getElementById("products-all-tab")
                 .addEventListener("click", () =>
-                    filterProductsByCategory("All")
+                    filterProductsByCategory("Tất cả")
                 );
             document
                 .getElementById("products-coffee-tab")
                 .addEventListener("click", () =>
-                    filterProductsByCategory("coffee")
+                    filterProductsByCategory("Cà phê")
                 );
             document
                 .getElementById("products-juice-tab")
                 .addEventListener("click", () =>
-                    filterProductsByCategory("juice")
+                    filterProductsByCategory("Nước ép")
                 );
             document
                 .getElementById("products-tea-tab")
                 .addEventListener("click", () =>
-                    filterProductsByCategory("tea")
+                    filterProductsByCategory("Trà")
                 );
 
             function updatePaginationButtons(paginationElement, pageCount) {
@@ -1114,13 +1350,22 @@
                 current = currentPage
             ) {
                 filterProduct = productsData;
+                console.log("---filterProduct", filterProduct);
+
 
                 // Xóa các nút trang số hiện tại
                 if (searchValue !== "")
-                    filterProduct = filterProduct.filter((product) =>
-                        product.categoryName.toUpperCase().includes(searchValue)
+                    filterProduct = filterProduct.filter(
+                        (product) =>
+                            product.categoryName
+                                .toUpperCase()
+                                .includes(searchValue) ||
+                            product.productId.toLocaleString().includes(searchValue) ||
+                            product.productName
+                                .toUpperCase()
+                                .includes(searchValue)
                     );
-                if (categoryValue !== "All")
+                if (categoryValue !== "Tất cả")
                     filterProduct = filterProduct.filter(
                         (product) => product.categoryName === categoryValue
                     );
@@ -1191,6 +1436,277 @@
                 );
             };
             // Hiển thị tất cả đơn hàng khi trang tải xong
+        </script>
+
+        <script>
+            //Authenticate
+            const user = JSON.parse(localStorage.getItem("loginUser"));
+            if (!localStorage.getItem("loginUser"))
+                window.location.href = "/login.html";
+            else if (
+                JSON.parse(localStorage.getItem("loginUser")).roleName ===
+                "Admin"
+            ) {
+                document.getElementById("user_nav").innerHTML = `
+				<a class="nav-link " href="users.html" >
+					<span class="nav-icon">
+						<svg width="24px" height="24px" viewBox="0 0 24.00 24.00"  class="bi bi-card-list" fill="none"
+							xmlns="http://www.w3.org/2000/svg">
+							<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+							<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+							<g id="SVGRepo_iconCarrier">
+								<path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
+									stroke="currentColor" stroke-width="1.392" stroke-linecap="round"
+									stroke-linejoin="round"></path>
+								<path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z"
+									stroke="currentColor" stroke-width="1.392" stroke-linecap="round"
+									stroke-linejoin="round"></path>
+							</g>
+						/svg>
+					</span>
+					<span class="nav-link-text">Người dùng</span>
+				</a><!--//nav-link-->	`;
+            }
+
+            // Show detail product modal
+            function editProduct(product) {
+                console.log(product);
+                console.log(user.roleName);
+                if (user.roleName === "Admin") {
+                    document.getElementById("editProductBody").innerHTML = `
+            		<tr style="border: none">
+                        <td style="border: none; text-align:end; font-weight: bold" >
+                            <label for="productName">Tên sản phẩm:</label>
+                        </td>
+                        <td style="border: none">
+                            <input type="text" id="productName" name="productName" value="${product.productName}" size="25">
+                        </td>
+                    </tr>
+                    <tr style="border: none">
+                        <td style="border: none; text-align:end; font-weight: bold">
+                            <label for="imgUrl">Link hình ảnh:</label>
+                        </td>
+                        <td style="border: none">
+                            <input type="text" id="imgUrl" name="imgUrl" value="${product.imgUrl}" size="25">
+                        </td>
+                    </tr>
+                    <tr style="border: none">
+                        <td style="border: none; text-align:end; font-weight: bold">
+                            <label for="price">Giá tiền:</label>
+                        </td>
+                        <td style="border: none">
+                            <input type="text" id="price" name="price" value="${product.price}" size="25">
+                        </td>
+                    </tr>
+                    <tr style="border: none">
+                        <td style="border: none; text-align:end; font-weight: bold">
+                            <label for="categoryId">Danh mục:</label>
+                        </td>
+                        <td style="border: none">
+                            <select id="categoryId">
+                                <option value="1">Cà phê</option>
+                                <option value="2">Nước ép</option>
+                                <option value="3">Trà</option>
+                            </select>
+                        </td>
+
+                    </tr>
+                    <tr style="border: none">
+                        <td style="border: none; text-align:end; font-weight: bold">
+                            <label for="desc">Mô tả:</label>
+                        </td>
+                        <td style="border: none">
+                            <textarea type="text" id="desc" name="price" rows="4" cols="30" value="${product.desc}"></textarea>
+                        </td>
+                    </tr>
+
+
+            	`;
+
+                    let productString = JSON.stringify(product).replace(
+                        /"/g,
+                        "&quot;"
+                    );
+
+                    document.getElementById(
+                        "editProductModalFooter"
+                    ).innerHTML = `
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+					<button type="button" class="btn btn-primary" onclick="handleEditProduct(${productString})">Sửa sản phẩm</button>
+				`;
+
+                    var currentCategoryId = product.categoryId;
+                    document.getElementById("categoryId").value =
+                        currentCategoryId;
+
+                    var currentDesc = product.desc;
+                    document.getElementById("desc").value = currentDesc;
+                }
+            }
+
+            function handleEditProduct(product) {
+                let editedProduct = {
+                    productId: product.id,
+                    productName: document.getElementById("productName").value,
+                    categoryId: document.getElementById("categoryId").value,
+                    price: document.getElementById("price").value,
+                    desc: document.getElementById("desc").value,
+                    imgUrl: document.getElementById("imgUrl").value,
+                };
+
+                console.log(editedProduct);
+
+                fetch(`/product/${editedProduct.productId}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(editedProduct),
+                })
+                    .then((response) => {
+                        if (response.ok) {
+                            // Xử lý thành công (ví dụ: đóng modal)
+                            alert("Sửa sản phẩm thành công!");
+                        } else {
+                            alert("Sửa sản phẩm không thành công!");
+                        }
+                        window.location.reload();
+                    })
+                    .catch((error) =>
+                        console.error("An error occurred:", error)
+                    );
+            }
+
+            function deleteProduct(product) {
+                let productString = JSON.stringify(product).replace(
+                    /"/g,
+                    "&quot;"
+                );
+
+                document.getElementById("deleteProductModelFooter").innerHTML = `
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+					<button type="button" class="btn btn-danger" onclick="handleDeleteProduct(${productString})">Xóa sản phẩm</button>
+				`;
+                document.getElementById(
+                    "deleteProductCardBody"
+                ).innerHTML = `<div style="display: flex;align-items: center;justify-content: center;">
+					<h4 style="text-align: center;" class="card-text">Bạn có chắc chắn muốn xóa hóa đơn này không?</h4>`;
+            }
+
+            function handleDeleteProduct(product) {
+                fetch(`/product/${product.id}`, {
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json"
+				},
+			})
+				.then(response => {
+					if (response.ok) {
+						// Xử lý thành công (ví dụ: đóng modal)
+						alert("Xóa sản phẩm thành công!");
+					} else {
+						alert("Xóa sản phẩm không thành công!");
+					}
+					window.location.reload()
+
+				})
+				.catch(error => console.error("An error occurred:", error));
+            }
+
+            // add product
+            function addProduct() {
+                if (user.roleName === "Admin") {
+                    document.getElementById("addProductBody").innerHTML = `
+            		<tr style="border: none">
+                        <td style="border: none; text-align:end; font-weight: bold" >
+                            <label for="productName">Tên sản phẩm:</label>
+                        </td>
+                        <td style="border: none">
+                            <input type="text" id="add_productName" name="productName" size="25" placeholder="Tên sản phẩm">
+                        </td>
+                    </tr>
+                    <tr style="border: none">
+                        <td style="border: none; text-align:end; font-weight: bold">
+                            <label for="imgUrl">Link hình ảnh:</label>
+                        </td>
+                        <td style="border: none">
+                            <input type="text" id="add_imgUrl" name="imgUrl" placeholder="Link hình ảnh" size="25">
+                        </td>
+                    </tr>
+                    <tr style="border: none">
+                        <td style="border: none; text-align:end; font-weight: bold">
+                            <label for="price">Giá tiền:</label>
+                        </td>
+                        <td style="border: none">
+                            <input type="text" id="add_price" name="price" placeholder="Giá" size="25">
+                        </td>
+                    </tr>
+                    <tr style="border: none">
+                        <td style="border: none; text-align:end; font-weight: bold">
+                            <label for="categoryId">Danh mục:</label>
+                        </td>
+                        <td style="border: none">
+                            <select id="add_categoryId">
+                                <option value="1">Cà phê</option>
+                                <option value="2">Nước ép</option>
+                                <option value="3">Trà</option>
+                            </select>
+                        </td>
+
+                    </tr>
+                    <tr style="border: none">
+                        <td style="border: none; text-align:end; font-weight: bold">
+                            <label for="desc">Mô tả:</label>
+                        </td>
+                        <td style="border: none">
+                            <textarea type="text" id="add_desc" name="price" rows="4" cols="30" placeholder="Mô tả"></textarea>
+                        </td>
+                    </tr>
+
+
+            	`;
+
+                    document.getElementById(
+                        "addProductModalFooter"
+                    ).innerHTML = `
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+					<button type="button" class="btn btn-primary" onclick="handleAddProduct()">Thêm sản phẩm</button>
+				`;
+
+                }
+            }
+
+            function handleAddProduct() {
+                let addProduct = {
+                    productName: document.getElementById("add_productName").value,
+                    categoryId: document.getElementById("add_categoryId").value,
+                    price: document.getElementById("add_price").value,
+                    desc: document.getElementById("add_desc").value,
+                    imgUrl: document.getElementById("add_imgUrl").value,
+                };
+
+                console.log(addProduct);
+
+                fetch(`/product/`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(addProduct),
+                })
+                    .then((response) => {
+                        if (response.ok) {
+                            // Xử lý thành công (ví dụ: đóng modal)
+                            alert("Thêm sản phẩm thành công!");
+                        } else {
+                            alert("Thêm sản phẩm không thành công!");
+                        }
+                        window.location.reload();
+                    })
+                    .catch((error) =>
+                        console.error("An error occurred:", error)
+                    );
+            }
         </script>
     </body>
 </html>
