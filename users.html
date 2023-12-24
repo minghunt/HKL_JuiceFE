@@ -202,11 +202,6 @@
 								</ul>
 							</div>
 							</li><!--//nav-item-->
-					
-
-
-
-
 					</ul><!--//app-menu-->
 				</nav><!--//app-nav-->
 				<div class="app-sidepanel-footer">
@@ -262,14 +257,7 @@
 
 								</div><!--//col-->
 								<div class="col-auto">
-
-									<select class="form-select w-auto">
-										<option selected value="option-1">Tất cả</option>
-										<option value="option-2">Tuần này</option>
-										<option value="option-3">Tháng này</option>
-										<option value="option-4">3 tháng trước</option>
-
-									</select>
+									<button class="btn app-btn-secondary" style="background-color: #5edd93; color: #fff;" data-bs-toggle="modal" data-bs-target="#addUserModal">Thêm người dùng</button>
 								</div>
 								<div class="col-auto">
 									<a class="btn app-btn-secondary" href="#">
@@ -346,9 +334,218 @@
 
 
 			</div><!--//container-fluid-->
+			<!--//Modal Edit-->
+			<div
+			class="modal fade"
+			id="editUserModal"
+			tabindex="-1"
+			aria-labelledby="editProductModalLabel"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5
+							class="modal-title"
+							id="editModalLabel"
+						>
+							Sửa thông tin người dùng
+						</h5>
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal"
+							aria-label="Close"
+						></button>
+					</div>
+					<div class="modal-body">
+						<div class="card product-card">
+							<table
+								style="
+									border: none;
+									vertical-align: middle;
+									display: flex;
+									flex-direction: column;
+									align-items: center;
+								"
+								class="table"
+								id="editProductBody"
+							>
+							</table>
+						</div>
+					</div>
+					<div
+						class="modal-footer"
+						id="editProductModalFooter"
+					>
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-bs-dismiss="modal"
+						>
+							Đóng
+						</button>
+					</div>
+				</div>
+			</div>
+			</div>
+
+		<!--//Modal Delete-->
+			<div
+				class="modal fade"
+				id="deleteUserModal"
+				tabindex="-1"
+				aria-labelledby="deleteProductModalLabel"
+				aria-hidden="true"
+			>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Xóa người dùng</h5>
+							<button
+								type="button"
+								class="btn-close"
+								data-bs-dismiss="modal"
+								aria-label="Close"
+							></button>
+						</div>
+						<div class="modal-body">
+							<div class="card product-card">
+								<div
+									id="deleteProductCardHead"
+									style="
+										display: flex;
+										justify-content: space-between;
+										align-items: center;
+									"
+									class="card-header"
+								></div>
+								<div class="card-body">
+									<div id="deleteProductCardBody">
+										<div style="display: flex;align-items: center;justify-content: center;">
+										<h4 style="text-align: center;" class="card-text">Bạn có chắc chắn muốn xóa người dùng này không?</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div
+							class="modal-footer"
+							id="deleteProductModelFooter"
+						>
+							<button
+								type="button"
+								class="btn btn-secondary"
+								data-bs-dismiss="modal"
+							>
+								Đóng
+							</button>
+							<button type="button" class="btn btn-danger">Xóa người dùng</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			
 		</div><!--//app-content-->
-
-
+		<!--//Modal Add-->
+		<div
+				class="modal fade"
+				id="addUserModal"
+				tabindex="-1"
+				aria-labelledby="addProductModalLabel"
+				aria-hidden="true"
+			>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5
+								class="modal-title"
+								id="addProductModalLabel"
+							>
+								Thêm người dùng
+							</h5>
+							<button
+								type="button"
+								class="btn-close"
+								data-bs-dismiss="modal"
+								aria-label="Close"
+							></button>
+						</div>
+						<div class="modal-body">
+							<div class="card product-card">
+								<table
+									style="
+										border: none;
+										vertical-align: middle;
+										display: flex;
+										flex-direction: column;
+										align-items: center;
+									"
+									class="table"
+									id="addProductBody"
+								>
+									<tr style="border: none">
+										<td style="border: none; text-align:end; font-weight: bold" >
+											<label>Tên đăng nhập</label>
+										</td>
+										<td style="border: none">
+											<input type="text" id="add_userName" size="25" placeholder="user123">
+										</td>
+									</tr>
+									<tr style="border: none">
+										<td style="border: none; text-align:end; font-weight: bold" >
+											<label>Mật khẩu</label>
+										</td>
+										<td style="border: none">
+											<input type="password" id="userPassword" size="25" placeholder="password">
+										</td>
+									</tr>
+									<tr style="border: none">
+										<td style="border: none; text-align:end; font-weight: bold">
+											<label>Họ và tên</label>
+										</td>
+										<td style="border: none">
+											<input type="text" id="fullName" placeholder="Nguyễn Văn A" size="25">
+										</td>
+									</tr>
+									<tr style="border: none">
+										<td style="border: none; text-align:end; font-weight: bold">
+											<label>Số điện thoại</label>
+										</td>
+										<td style="border: none">
+											<input type="text" id="phone" placeholder="012 3456 789" size="25">
+										</td>
+									</tr>
+									<tr style="border: none">
+										<td style="border: none; text-align:end; font-weight: bold">
+											<label>Quyền hạn</label>
+										</td>
+										<td style="border: none">
+											<select id="roleId">
+												<option value="1">Quản lý</option>
+												<option value="2">Nhân viên</option>
+											</select>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<div
+							class="modal-footer"
+							id="addProductModalFooter"
+						>
+							<button
+								type="button"
+								class="btn btn-secondary"
+								data-bs-dismiss="modal"
+							>
+								Đóng
+							</button>
+							<button type="button" class="btn btn-primary">Thêm người dùng</button>
+						</div>
+					</div>
+				</div>
+		</div>
 	</div><!--//app-wrapper-->
 
 	<script>
@@ -402,30 +599,28 @@
 
 		// Hàm để thêm dữ liệu đơn hàng vào bảng
 		function displayUsers(usersData, page = 1) {
-
 			const tableBody = document.getElementById('usersTable').getElementsByTagName('tbody')[0];
 			tableBody.innerHTML = ""; // Xóa dữ liệu hiện tại
 			const start = (page - 1) * rowsPerPage;
 			const end = start + rowsPerPage;
 			const paginatedItems = usersData.slice(start, end);
-			console.log(paginatedItems)
-			paginatedItems.forEach(user => {
-				let roleClass = user.roleId === 1 ? 'bg-success' : 'bg-warning';
-				let roleLabel = user.roleId === 1 ? 'Quản lý' : 'Nhân viên';
+			paginatedItems.forEach(userInfo => {
+				let roleClass = userInfo.roleId === 1 ? 'bg-success' : 'bg-warning';
+				let roleLabel = userInfo.roleId === 1 ? 'Quản lý' : 'Nhân viên';
 				let row =
 					`
 				<tr>
-					<td class="cell">${user.id}</td>
-					<td class="cell"><span class="truncate">${user.userFullname}</span></td>
-					<td class="cell">${user.userPhone}</td>
-					<td class="cell"><span class="note">${user.dayBegin}</span></td>
+					<td class="cell">${userInfo.id}</td>
+					<td class="cell"><span class="truncate">${userInfo.userFullname}</span></td>
+					<td class="cell">${userInfo.userPhone}</td>
+					<td class="cell"><span class="note">${userInfo.dayBegin}</span></td>
 					<td class="cell"><span class="badge ${roleClass}">${roleLabel}</span></td>
 					<td class="cell">
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+						<svg xmlns="http://www.w3.org/2000/svg" style="cursor:pointer;margin-right:2px" data-bs-toggle="modal" data-bs-target="#editUserModal" onclick="editUser(${userInfo.id})" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
 							<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
 							<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
 						</svg>
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+						<svg xmlns="http://www.w3.org/2000/svg" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#deleteUserModal" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
 							<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
 							<path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
 						</svg>
@@ -443,7 +638,6 @@
 
 			// Cập nhật trạng thái của nút 'Previous' và 'Next'
 			updatePaginationButtons(document.getElementById('pagination'), Math.ceil(usersData.length / rowsPerPage));
-
 		}
 
 		// Hàm lọc đơn hàng theo trạng thái
@@ -472,7 +666,6 @@
 			} else {
 				nextButton.classList.remove('disabled');
 			}
-
 		}
 
 		function setupPagination(usersData, paginationElement, current=currentPage) {
@@ -487,10 +680,7 @@
 			}
 			filterUsers=usersData;
 			let pageCount = Math.ceil(usersData.length / rowsPerPage);
-			console.log('usersData',usersData)
-
 			displayUsers(usersData, current);
-
 			for (let i = 1; i <= pageCount; i++) {
 				let pageItem = document.createElement('li');
 				pageItem.classList.add('page-item');
@@ -529,6 +719,44 @@
 			setupPagination(users, document.getElementById('pagination'));
 		};
 		// Hiển thị tất cả đơn hàng khi trang tải xong
+
+		function editUser(userInfoId) {
+			let userInfo = users.find(user => user.id == userInfoId);
+			console.log(userInfo);
+			document.getElementById("editProductBody").innerHTML = `
+			<tr style="border: none">
+				<td style="border: none; text-align:end; font-weight: bold">
+					<label>Họ và tên</label>
+				</td>
+				<td style="border: none">
+					<input type="text" id="fullName" placeholder="Nguyễn Văn A" size="25" value="${userInfo.userFullname}">
+				</td>
+			</tr>
+			<tr style="border: none">
+				<td style="border: none; text-align:end; font-weight: bold">
+					<label>Số điện thoại</label>
+				</td>
+				<td style="border: none">
+					<input type="text" id="phone" placeholder="012 3456 789" size="25" value="${userInfo.userPhone}">
+				</td>
+			</tr>
+			<tr style="border: none">
+				<td style="border: none; text-align:end; font-weight: bold">
+					<label>Quyền hạn</label>
+				</td>
+				<td style="border: none">
+					<select id="roleId" value="${userInfo.roleId}">
+						<option value="1">Quản lý</option>
+						<option value="2">Nhân viên</option>
+					</select>
+				</td>
+			</tr>
+			`;
+			document.getElementById("editProductModalFooter").innerHTML = `
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+				<button type="button" class="btn btn-primary">Sửa thông tin</button>
+			`;
+        }
 	</script>
 	<!-- Javascript -->
 	<script src="assets/plugins/popper.min.js"></script>
