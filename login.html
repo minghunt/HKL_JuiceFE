@@ -69,14 +69,14 @@
         const password = document.getElementById("signin-password").value;
 		console.log(email,password)
 		const user={
-			roleName:'Manager',
+			roleName:'Admin',
 			userPhone:'0123456789',
 			userFullname:'Nguyen Minh Hung',
 			userId:1
 		}
 		if (email==='1'&&password==='1'){
 			localStorage.setItem('loginUser',JSON.stringify(user))
-			window.location.href='/index.html'
+			window.location.href='index.html'
 		}
 		else alert('Đăng nhập thất bại!')
 	}
