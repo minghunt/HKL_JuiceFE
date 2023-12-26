@@ -1868,8 +1868,6 @@
                     document.getElementById("uploadExcelBody").innerHTML = `
                     <p style="font-size: 20px; font-weight: bold">File dữ liệu sản phẩm:</p>
                     <input type="file" id="fileUpload" accept=".xls,.xlsx" />
-
-
             	`;
                 } else {
                     document.getElementById("uploadExcelBody").innerHTML = `
@@ -1912,15 +1910,11 @@
                                 XLSX.utils.sheet_to_row_object_array(
                                     workbook.Sheets[sheet]
                                 );
-                            jsonObject = JSON.stringify(rowObject);
+                            jsonObject = rowObject;
 
                             console.log("--- jsonOb", jsonObject);
                         });
-                    };
-                    fileReader.readAsBinaryString(selectedFile);
-
-                    // Send JSON data to your API endpoint for processing
-                    fetch(`admin/products/`, {
+                        fetch(`admin/products/`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -1939,6 +1933,9 @@
                         .catch((error) =>
                             console.error("An error occurred:", error)
                         );
+                    };
+                    fileReader.readAsBinaryString(selectedFile);
+                    // Send JSON data to your API endpoint for processing
                 }
             }
         </script>
