@@ -282,10 +282,10 @@
 					<a class="flex-sm-fill text-sm-center nav-link active" id="users-all-tab" data-bs-toggle="tab"
 						href="#users-all" role="tab" aria-controls="users-all" aria-selected="true">Tất cả</a>
 					<a class="flex-sm-fill text-sm-center nav-link" id="users-manager-tab" data-bs-toggle="tab"
-						href="#users-paid" role="tab" aria-controls="users-paid" aria-selected="false">Quản lý</a>
+						href="#users-paid" role="tab" aria-controls="users-paid" aria-selected="false">Admin</a>
 					<a class="flex-sm-fill text-sm-center nav-link" id="users-employee-tab" data-bs-toggle="tab"
 						href="#users-pending" role="tab" aria-controls="users-pending"
-						aria-selected="false">Nhân viên</a>
+						aria-selected="false">Thu ngân</a>
 				</nav>
 
 
@@ -294,15 +294,15 @@
 						<div class="app-card app-card-orders-table shadow-sm mb-5">
 							<div class="app-card-body">
 								<div class="table-responsive">
-									<table id="usersTable" class="table app-table-hover mb-0 text-left">
+									<table style="text-align: center;" id="usersTable" class="table app-table-hover mb-0 text-left">
 										<thead>
 											<tr>
 												<th class="cell">Mã nhân viên</th>
 												<th class="cell">Họ tên</th>
 												<th class="cell">Số điện thoại</th>
-												<th class="cell">Ngày vào làm</th>
+												<th class="cell">Tài khoản</th>
 												<th class="cell">Chức vụ</th>
-												<th class="cell"></th>
+												<th class="cell">Hành động</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -320,7 +320,7 @@
 								</li>
 								<!-- Các nút trang sẽ được thêm vào đây bằng JavaScript -->
 								<li class="page-item " id="nextPage">
-									<a class="page-link ">Sau</a>
+									<a style="cursor: pointer;" class="page-link ">Sau</a>
 								</li>
 							</ul>
 						</nav>
@@ -378,13 +378,7 @@
 						class="modal-footer"
 						id="editProductModalFooter"
 					>
-						<button
-							type="button"
-							class="btn btn-secondary"
-							data-bs-dismiss="modal"
-						>
-							Đóng
-						</button>
+						
 					</div>
 				</div>
 			</div>
@@ -439,7 +433,7 @@
 							>
 								Đóng
 							</button>
-							<button type="button" class="btn btn-danger">Xóa người dùng</button>
+							<button type="button" onclick="handleDeleteUser()" class="btn btn-danger">Xóa người dùng</button>
 						</div>
 					</div>
 				</div>
@@ -469,6 +463,7 @@
 								class="btn-close"
 								data-bs-dismiss="modal"
 								aria-label="Close"
+								
 							></button>
 						</div>
 						<div class="modal-body">
@@ -489,7 +484,7 @@
 											<label>Tên đăng nhập</label>
 										</td>
 										<td style="border: none">
-											<input type="text" id="add_userName" size="25" placeholder="user123">
+											<input type="text" id="addUserName" size="25" placeholder="user123">
 										</td>
 									</tr>
 									<tr style="border: none">
@@ -497,7 +492,7 @@
 											<label>Mật khẩu</label>
 										</td>
 										<td style="border: none">
-											<input type="password" id="userPassword" size="25" placeholder="password">
+											<input type="password" id="addUserPassword" size="25" placeholder="password">
 										</td>
 									</tr>
 									<tr style="border: none">
@@ -505,7 +500,7 @@
 											<label>Họ và tên</label>
 										</td>
 										<td style="border: none">
-											<input type="text" id="fullName" placeholder="Nguyễn Văn A" size="25">
+											<input type="text" id="addFullName" placeholder="Nguyễn Văn A" size="25">
 										</td>
 									</tr>
 									<tr style="border: none">
@@ -513,7 +508,7 @@
 											<label>Số điện thoại</label>
 										</td>
 										<td style="border: none">
-											<input type="text" id="phone" placeholder="012 3456 789" size="25">
+											<input type="text" id="addPhone" placeholder="012 3456 789" size="25">
 										</td>
 									</tr>
 									<tr style="border: none">
@@ -521,9 +516,9 @@
 											<label>Quyền hạn</label>
 										</td>
 										<td style="border: none">
-											<select id="roleId">
-												<option value="1">Quản lý</option>
-												<option value="2">Nhân viên</option>
+											<select id="addRoleId">
+												<option value="1">Admin</option>
+												<option value="2">Thu ngân</option>
 											</select>
 										</td>
 									</tr>
@@ -541,7 +536,7 @@
 							>
 								Đóng
 							</button>
-							<button type="button" class="btn btn-primary">Thêm người dùng</button>
+							<button type="button" class="btn btn-primary" onclick="handleAddUser()">Thêm người dùng</button>
 						</div>
 					</div>
 				</div>
@@ -574,13 +569,13 @@
 		else window.location.href='/index.html'
 		// Giả sử bạn đã có một mảng dữ liệu đơn hàng
 		const users = [
-			{ id: "1", userFullname: "Nguyễn Quốc Kỳ", userPhone: "012 3456 789", dayBegin: "02/11/2023", roleId: 1},
-			{ id: "0002", userFullname: "Nguyễn Quốc Kỳ", userPhone: "012 3456 789", dayBegin: "02/11/2023", roleId: 2},
-			{ id: "0003", userFullname: "Nguyễn Quốc Kỳ", userPhone: "012 3456 789", dayBegin: "02/11/2023", roleId: 2},
-			{ id: "0004", userFullname: "Nguyễn Quốc Kỳ", userPhone: "012 3456 789", dayBegin: "02/11/2023", roleId: 2},
-			{ id: "0005", userFullname: "Nguyễn Quốc Kỳ", userPhone: "012 3456 789", dayBegin: "02/11/2023", roleId: 1},
-			{ id: "0006", userFullname: "Nguyễn Quốc Kỳ", userPhone: "012 3456 789", dayBegin: "02/11/2023", roleId: 1},
-			{ id: "0007", userFullname: "Nguyễn Quốc Kỳ", userPhone: "012 3456 789", dayBegin: "02/11/2023", roleId: 1},
+			{ userId: "1", userFullname: "Nguyễn Quốc Kỳ", userPhone: "012 3456 789", userName: "02/11/2023", roleId: 1},
+			{ userId: "0002", userFullname: "Nguyễn Quốc Kỳ", userPhone: "012 3456 789", userName: "02/11/2023", roleId: 2},
+			{ userId: "0003", userFullname: "Nguyễn Quốc Kỳ", userPhone: "012 3456 789", userName: "02/11/2023", roleId: 2},
+			{ userId: "0004", userFullname: "Nguyễn Quốc Kỳ", userPhone: "012 3456 789", userName: "02/11/2023", roleId: 2},
+			{ userId: "0005", userFullname: "Nguyễn Quốc Kỳ", userPhone: "012 3456 789", userName: "02/11/2023", roleId: 1},
+			{ userId: "0006", userFullname: "Nguyễn Quốc Kỳ", userPhone: "012 3456 789", userName: "02/11/2023", roleId: 1},
+			{ userId: "0007", userFullname: "Nguyễn Quốc Kỳ", userPhone: "012 3456 789", userName: "02/11/2023", roleId: 1},
 			// Các đơn hàng khác
 		];
 		const rowsPerPage = 3; // Số hàng mỗi trang
@@ -606,23 +601,20 @@
 			const paginatedItems = usersData.slice(start, end);
 			paginatedItems.forEach(userInfo => {
 				let roleClass = userInfo.roleId === 1 ? 'bg-success' : 'bg-warning';
-				let roleLabel = userInfo.roleId === 1 ? 'Quản lý' : 'Nhân viên';
+				let roleLabel = userInfo.roleId === 1 ? 'Admin' : 'Thu ngân';
 				let row =
 					`
 				<tr>
-					<td class="cell">${userInfo.id}</td>
+					<td class="cell">#${userInfo.userId}</td>
 					<td class="cell"><span class="truncate">${userInfo.userFullname}</span></td>
 					<td class="cell">${userInfo.userPhone}</td>
-					<td class="cell"><span class="note">${userInfo.dayBegin}</span></td>
+					<td class="cell"><span class="note">${userInfo.userName}</span></td>
 					<td class="cell"><span class="badge ${roleClass}">${roleLabel}</span></td>
 					${
-						(userInfo.id == JSON.parse(localStorage.getItem('loginUser')).userId)
+						(userInfo.userId == JSON.parse(localStorage.getItem('loginUser')).userId)
 							? `	
 							<td class="cell">
-								<svg xmlns="http://www.w3.org/2000/svg" style="cursor:pointer;margin-right:2px" data-bs-toggle="modal" data-bs-target="#editUserModal" onclick="editUser(${userInfo.id})" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-									<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-									<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>									
-								</svg>
+								<svg style="cursor:pointer;margin-right:2px" data-bs-toggle="modal" data-bs-target="#editUserModal" onclick="editUser(${userInfo.userId})" width="19" height="19" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>edit_cover [#1481]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="#27c4b2" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-419.000000, -359.000000)" fill="#27c4b2"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M384,209.210475 L384,219 L363,219 L363,199.42095 L373.5,199.42095 L373.5,201.378855 L365.1,201.378855 L365.1,217.042095 L381.9,217.042095 L381.9,209.210475 L384,209.210475 Z M370.35,209.51395 L378.7731,201.64513 L380.4048,203.643172 L371.88195,212.147332 L370.35,212.147332 L370.35,209.51395 Z M368.25,214.105237 L372.7818,214.105237 L383.18415,203.64513 L378.8298,199 L368.25,208.687714 L368.25,214.105237 Z" id="edit_cover-[#1481]"> </path> </g> </g> </g> </g></svg>
 							</td>
 							`
 							: ''
@@ -630,14 +622,17 @@
 					<td class="cell">
 						${
 							(userInfo.id != JSON.parse(localStorage.getItem('loginUser')).userId && userInfo.roleId !== 1)
-								? `	<svg xmlns="http://www.w3.org/2000/svg" style="cursor:pointer;margin-right:2px" data-bs-toggle="modal" data-bs-target="#editUserModal" onclick="editUser(${userInfo.id})" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-										<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-										<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>									
-									</svg>
-									<svg xmlns="http://www.w3.org/2000/svg" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#deleteUserModal" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-										<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-										<path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-									</svg>
+								? `	<svg style="cursor:pointer;margin-right:2px" data-bs-toggle="modal" data-bs-target="#editUserModal" onclick="editUser(${userInfo.userId})" width="19" height="19" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>edit_cover [#1481]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="#27c4b2" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-419.000000, -359.000000)" fill="#27c4b2"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M384,209.210475 L384,219 L363,219 L363,199.42095 L373.5,199.42095 L373.5,201.378855 L365.1,201.378855 L365.1,217.042095 L381.9,217.042095 L381.9,209.210475 L384,209.210475 Z M370.35,209.51395 L378.7731,201.64513 L380.4048,203.643172 L371.88195,212.147332 L370.35,212.147332 L370.35,209.51395 Z M368.25,214.105237 L372.7818,214.105237 L383.18415,203.64513 L378.8298,199 L368.25,208.687714 L368.25,214.105237 Z" id="edit_cover-[#1481]"> </path> </g> </g> </g> </g></svg>
+
+									<svg style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#deleteUserModal" onclick="deleteUser(${userInfo.userId})" width="19px" height="19px" viewBox="0 0 25 25" version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#fe4d4d"> <g id="Page-1" stroke="#fe4d4d" stroke-width="1" fill="none" fill-rule="evenodd">
+        					<g id="Dribbble-Light-Preview" transform="translate(-179.000000, -360.000000)" fill="#fe4d4d"">
+            					<g id="icons" transform="translate(56.000000, 160.000000)" >
+                					<path d="M130.35,216 L132.45,216 L132.45,208 L130.35,208 L130.35,216 Z M134.55,216 L136.65,216 L136.65,208 L134.55,208 L134.55,216 Z M128.25,218 L138.75,218 L138.75,206 L128.25,206 L128.25,218 Z M130.35,204 L136.65,204 L136.65,202 L130.35,202 L130.35,204 Z M138.75,204 L138.75,200 L128.25,200 L128.25,204 L123,204 L123,206 L126.15,206 L126.15,220 L140.85,220 L140.85,206 L144,206 L144,204 L138.75,204 Z" id="delete-[#1487]">
+										/path>
+   						         </g>
+        					</g>
+    						</g>
+						</svg>
 									`
 								: ''
 						}
@@ -688,7 +683,7 @@
 		function setupPagination(usersData, paginationElement, current=currentPage) {
 			// Xóa các nút trang số hiện tại
 			if (searchValue!=='')
-				usersData = usersData.filter(user => user.id.toUpperCase().includes(searchValue));
+				usersData = usersData.filter(user => user.userId.toUpperCase().includes(searchValue));
 			if (roleIdValue!=='All')
 				usersData = usersData.filter(user => user.roleId === roleIdValue);
 			
@@ -738,7 +733,7 @@
 		// Hiển thị tất cả đơn hàng khi trang tải xong
 
 		function editUser(userInfoId) {
-			let userInfo = users.find(user => user.id == userInfoId);
+			let userInfo = users.find(user => user.userId == userInfoId);
 			console.log(userInfo);
 			document.getElementById("editProductBody").innerHTML = `
 			<tr style="border: none">
@@ -746,7 +741,7 @@
 					<label>Họ và tên</label>
 				</td>
 				<td style="border: none">
-					<input type="text" id="fullName" placeholder="Nguyễn Văn A" size="25" value="${userInfo.userFullname}">
+					<input type="text" id="editFullName" placeholder="Nguyễn Văn A" size="25" value="${userInfo.userFullname}">
 				</td>
 			</tr>
 			<tr style="border: none">
@@ -754,7 +749,7 @@
 					<label>Số điện thoại</label>
 				</td>
 				<td style="border: none">
-					<input type="text" id="phone" placeholder="012 3456 789" size="25" value="${userInfo.userPhone}">
+					<input type="text" id="editPhone" placeholder="012 3456 789" size="25" value="${userInfo.userPhone}">
 				</td>
 			</tr>
 			<tr style="border: none">
@@ -762,18 +757,104 @@
 					<label>Quyền hạn</label>
 				</td>
 				<td style="border: none">
-					<select id="roleId" value="${userInfo.roleId}">
-						<option value="1">Quản lý</option>
-						<option value="2">Nhân viên</option>
+					<select id="editRoleId" >
+						<option value="1">Admin</option>
+						<option value="2">Thu ngân</option>
 					</select>
 				</td>
 			</tr>
 			`;
+			document.getElementById("editRoleId").value=userInfo.roleId
 			document.getElementById("editProductModalFooter").innerHTML = `
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-				<button type="button" class="btn btn-primary">Sửa thông tin</button>
+				<button type="button" class="btn btn-primary" onclick="handleEditUser(${userInfoId})">Sửa thông tin</button>
 			`;
         }
+	
+		
+		function deleteUser(userInfoId) {
+			deleteUserId=userInfoId;
+        }
+		function handleDeleteUser() {
+			console.log('deleteUserId',deleteUserId)
+			fetch(`/admin/products/${deleteUserId}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // Xử lý thành công (ví dụ: đóng modal)
+                        alert("Xóa người dùng thành công!");
+                    } else {
+                        alert("Xóa người dùng không thành công!");
+                    }
+                    window.location.reload()
+
+                })
+                .catch(error => console.error("An error occurred:", error));
+		}
+		function handleEditUser(userEditId) {
+			let editedUser = {
+                userId: userEditId,
+                userFullname: document.getElementById("editFullName").value,
+                roleId: document.getElementById("editRoleId").value,
+                userPhone: document.getElementById("editPhone").value,
+                
+            };
+			console.log('handleEditUser',editedUser)
+			fetch(`/admin/users/${userEditId}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(editedUser),
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        // Xử lý thành công (ví dụ: đóng modal)
+                        alert("Sửa người dùng thành công!");
+                    } else {
+                        alert("Sửa người dùng không thành công!");
+                    }
+                    window.location.reload();
+                })
+                .catch((error) =>
+                    console.error("An error occurred:", error)
+                );
+		}
+
+		function handleAddUser() {
+			let addUser = {
+                userName: document.getElementById("addUserName").value,
+                userPassword: document.getElementById("addUserPassword").value,
+                userFullname: document.getElementById("addFullName").value,
+                roleId: document.getElementById("addRoleId").value,
+                userPhone: document.getElementById("addPhone").value,
+            };
+			console.log('handleEditUser',addUser)
+			fetch(`/admin/users/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(addUser),
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        // Xử lý thành công (ví dụ: đóng modal)
+                        alert("Thêm người dùng thành công!");
+                    } else {
+                        alert("Thêm người dùng không thành công!");
+                    }
+                    window.location.reload();
+                })
+                .catch((error) =>
+                    console.error("An error occurred:", error)
+                );
+		}
+
 	</script>
 	<!-- Javascript -->
 	<script src="assets/plugins/popper.min.js"></script>
